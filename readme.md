@@ -71,3 +71,4 @@
 - [Официальная документация Apache NiFi](https://nifi.apache.org/docs.html)
 - [Скачать Apache NiFi](https://nifi.apache.org/download.html)
 - [Скачать JDK](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
+- [ExecuteScript Cookbook](https://community.cloudera.com/t5/Community-Articles/ExecuteScript-Cookbook-part-1/ta-p/248922)
