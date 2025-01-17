@@ -2,7 +2,7 @@
   "flowContents" : {
     "identifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
     "instanceIdentifier" : "316b57e6-0194-1000-7c05-207e6591f5f7",
-    "name" : "Lab3",
+    "name" : "lesson3",
     "comments" : "Читаем файлы",
     "position" : {
       "x" : -504.0,
@@ -11,13 +11,173 @@
     "processGroups" : [ ],
     "remoteProcessGroups" : [ ],
     "processors" : [ {
+      "identifier" : "7619d5c1-0194-1000-2760-e61c5579f5f4",
+      "instanceIdentifier" : "5c359ab1-9803-371a-cae7-600b10102550",
+      "name" : "FetchFile",
+      "comments" : "",
+      "position" : {
+        "x" : 360.0,
+        "y" : 16.0
+      },
+      "type" : "org.apache.nifi.processors.standard.FetchFile",
+      "bundle" : {
+        "group" : "org.apache.nifi",
+        "artifact" : "nifi-standard-nar",
+        "version" : "2.1.0"
+      },
+      "properties" : {
+        "Move Conflict Strategy" : "Replace File",
+        "Log level when file not found" : "ERROR",
+        "Move Destination Directory" : null,
+        "Log level when permission denied" : "ERROR",
+        "File to Fetch" : "${absolute.path}/${filename}",
+        "Completion Strategy" : "None"
+      },
+      "propertyDescriptors" : {
+        "Move Conflict Strategy" : {
+          "name" : "Move Conflict Strategy",
+          "displayName" : "Move Conflict Strategy",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Log level when file not found" : {
+          "name" : "Log level when file not found",
+          "displayName" : "Log level when file not found",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Move Destination Directory" : {
+          "name" : "Move Destination Directory",
+          "displayName" : "Move Destination Directory",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Log level when permission denied" : {
+          "name" : "Log level when permission denied",
+          "displayName" : "Log level when permission denied",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "File to Fetch" : {
+          "name" : "File to Fetch",
+          "displayName" : "File to Fetch",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Completion Strategy" : {
+          "name" : "Completion Strategy",
+          "displayName" : "Completion Strategy",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        }
+      },
+      "style" : { },
+      "schedulingPeriod" : "0 sec",
+      "schedulingStrategy" : "TIMER_DRIVEN",
+      "executionNode" : "ALL",
+      "penaltyDuration" : "30 sec",
+      "yieldDuration" : "1 sec",
+      "bulletinLevel" : "WARN",
+      "runDurationMillis" : 0,
+      "concurrentlySchedulableTaskCount" : 2,
+      "autoTerminatedRelationships" : [ "failure", "permission.denied", "not.found" ],
+      "scheduledState" : "ENABLED",
+      "retryCount" : 10,
+      "retriedRelationships" : [ ],
+      "backoffMechanism" : "PENALIZE_FLOWFILE",
+      "maxBackoffPeriod" : "10 mins",
+      "componentType" : "PROCESSOR",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
+      "identifier" : "7674e76f-0194-1000-17a1-16fc5df78e57",
+      "instanceIdentifier" : "bf4aba02-f036-3af5-0f80-28061fbc245a",
+      "name" : "SplitText",
+      "comments" : "",
+      "position" : {
+        "x" : 1152.0,
+        "y" : 144.0
+      },
+      "type" : "org.apache.nifi.processors.standard.SplitText",
+      "bundle" : {
+        "group" : "org.apache.nifi",
+        "artifact" : "nifi-standard-nar",
+        "version" : "2.1.0"
+      },
+      "properties" : {
+        "Remove Trailing Newlines" : "true",
+        "Maximum Fragment Size" : null,
+        "Header Line Marker Characters" : null,
+        "Header Line Count" : "0",
+        "Line Split Count" : "1"
+      },
+      "propertyDescriptors" : {
+        "Remove Trailing Newlines" : {
+          "name" : "Remove Trailing Newlines",
+          "displayName" : "Remove Trailing Newlines",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Maximum Fragment Size" : {
+          "name" : "Maximum Fragment Size",
+          "displayName" : "Maximum Fragment Size",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Header Line Marker Characters" : {
+          "name" : "Header Line Marker Characters",
+          "displayName" : "Header Line Marker Characters",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Header Line Count" : {
+          "name" : "Header Line Count",
+          "displayName" : "Header Line Count",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Line Split Count" : {
+          "name" : "Line Split Count",
+          "displayName" : "Line Split Count",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        }
+      },
+      "style" : { },
+      "schedulingPeriod" : "0 sec",
+      "schedulingStrategy" : "TIMER_DRIVEN",
+      "executionNode" : "ALL",
+      "penaltyDuration" : "30 sec",
+      "yieldDuration" : "1 sec",
+      "bulletinLevel" : "WARN",
+      "runDurationMillis" : 0,
+      "concurrentlySchedulableTaskCount" : 1,
+      "autoTerminatedRelationships" : [ "original", "failure" ],
+      "scheduledState" : "ENABLED",
+      "retryCount" : 10,
+      "retriedRelationships" : [ ],
+      "backoffMechanism" : "PENALIZE_FLOWFILE",
+      "maxBackoffPeriod" : "10 mins",
+      "componentType" : "PROCESSOR",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
       "identifier" : "3282f3e9-0194-1000-4911-6a5dede6df95",
       "instanceIdentifier" : "c745dd4f-35e8-3754-47f3-c2adf120c447",
       "name" : "ExecuteGroovyScript",
       "comments" : "",
       "position" : {
-        "x" : 368.0,
-        "y" : -248.0
+        "x" : 360.0,
+        "y" : -256.0
       },
       "type" : "org.apache.nifi.processors.groovyx.ExecuteGroovyScript",
       "bundle" : {
@@ -26,8 +186,7 @@
         "version" : "2.1.0"
       },
       "properties" : {
-        "groovyx-script-body" : "import org.apache.nifi.processor.io.OutputStreamCallback\nimport org.apache.nifi.processor.ProcessSession\nimport java.nio.file.Paths\n\n// Функция для рекурсивного обхода папок\ndef traverseFolders(File folder, String relativePath, List<String> folderList) {\n    // Получаем список файлов и подпапок в текущей папке\n    def files = folder.listFiles()\n\n    // Если папка пуста, выходим\n    if (files == null || files.length == 0) {\n        return\n    }\n\n    // Обходим все элементы в папке\n    files.each { file ->\n        if (file.isDirectory()) {\n            // Добавляем путь к папке в список\n            def fullFolderPath = Paths.get(relativePath, file.name).toString()\n            folderList << fullFolderPath\n\n            // Рекурсивно обходим подпапку\n            traverseFolders(file, fullFolderPath, folderList)\n        }\n    }\n}\n\n// Глобальные переменные\ndef folderPath = absolute_path.value\n\n// Проверяем, задан ли путь к папке\nif (!folderPath) {\n    throw new IllegalStateException(\"Не задан путь в свойстве absolute_path\")\n}\n\n// Проверяем, существует ли папка и является ли она директорией\ndef folder = new File(folderPath)\nif (!folder.exists() || !folder.isDirectory()) {\n    throw new IllegalStateException(\"Указанная папка не существует или не является директорией: ${folderPath}\")\n}\n\n// Основной код\ntry {\n    // Список для хранения путей к папкам\n    def folderList = []\n\n    // Начинаем рекурсивный обход с корневой папки\n    traverseFolders(folder, \"\", folderList)\n\n    // Создаем новый FlowFile\n    def flowFile = session.create()\n\n    // Устанавливаем атрибут mime.type\n    flowFile = session.putAttribute(flowFile, \"mime.type\", \"text/plain\")\n\n    // Устанавливаем атрибут с полным путём к папке\n    flowFile = session.putAttribute(flowFile, \"absolute.path\", folderPath)\n\n    // Записываем список папок в содержимое FlowFile\n    flowFile = session.write(flowFile, { outputStream ->\n        folderList.each { currentFolderPath -> // Используем другое имя переменной\n            outputStream.write((currentFolderPath + \"\\n\").getBytes(\"UTF-8\"))\n        }\n    } as OutputStreamCallback)\n\n    // Передаем FlowFile в выходное отношение\n    session.transfer(flowFile, REL_SUCCESS)\n\n} catch (Exception e) {\n    log.error(\"Ошибка при выполнении скрипта: ${e.message}\", e)\n    session.rollback()\n    return\n}",
-        "include_file_regex" : null,
+        "groovyx-script-body" : "import org.apache.nifi.processor.io.OutputStreamCallback\nimport org.apache.nifi.processor.ProcessSession\nimport java.nio.file.Paths\nimport java.nio.file.Files\nimport java.nio.file.Path\nimport java.util.regex.Pattern\n\n// Глобальные переменные\ndef folderPath = absolute_path.value\ndef excludeFolderRegex = exclude_folder_regex.value // Динамический атрибут для исключения папок\n\n// Проверяем, задан ли путь к папке\nif (!folderPath) {\n    throw new IllegalStateException(\"Не задан путь в свойстве absolute_path\")\n}\n\n// Проверяем, существует ли папка и является ли она директорией\ndef folder = new File(folderPath)\nif (!folder.exists() || !folder.isDirectory()) {\n    throw new IllegalStateException(\"Указанная папка не существует или не является директорией: ${folderPath}\")\n}\n\n// Компилируем регулярное выражение для исключения папок\nPattern excludePattern = null\nif (excludeFolderRegex) {\n    excludePattern = Pattern.compile(excludeFolderRegex)\n}\n\n// Функция для проверки, содержит ли папка файлы (нерекурсивно)\ndef containsFilesNonRecursive(Path path) {\n    try {\n        return Files.list(path)\n            .anyMatch { p -> Files.isRegularFile(p) }\n    } catch (Exception e) {\n        log.error(\"Ошибка при проверке папки ${path}: ${e.message}\", e)\n        return false\n    }\n}\n\n// Основной код\ntry {\n    // Обрабатываем корневую папку\n    if (containsFilesNonRecursive(Paths.get(folderPath))) {\n        def flowFile = session.create()\n\n        // Устанавливаем атрибуты\n        flowFile = session.putAttribute(flowFile, \"mime.type\", \"text/plain\")\n        flowFile = session.putAttribute(flowFile, \"absolute.path\", folderPath)\n\n        // Записываем путь в содержимое FlowFile\n        flowFile = session.write(flowFile, { outputStream ->\n            outputStream.write(\"${folderPath}\\n\".getBytes(\"UTF-8\"))\n        } as OutputStreamCallback)\n\n        // Передаем FlowFile в выходное отношение\n        session.transfer(flowFile, REL_SUCCESS)\n    }\n\n    // Обрабатываем вложенные папки\n    Files.walk(Paths.get(folderPath))\n        .filter { path ->\n            // Исключаем корневую папку\n            if (path == Paths.get(folderPath)) {\n                return false\n            }\n\n            // Проверяем, является ли путь папкой\n            if (!Files.isDirectory(path)) {\n                return false\n            }\n\n            // Проверяем, исключена ли папка по регулярному выражению\n            if (excludePattern != null && excludePattern.matcher(path.getFileName().toString()).matches()) {\n                return false\n            }\n\n            // Проверяем, содержит ли папка файлы (нерекурсивно)\n            containsFilesNonRecursive(path)\n        }\n        .forEach { path ->\n            def flowFile = session.create()\n\n            // Устанавливаем атрибуты\n            flowFile = session.putAttribute(flowFile, \"mime.type\", \"text/plain\")\n            flowFile = session.putAttribute(flowFile, \"absolute.path\", path.toString())\n\n            // Записываем путь в содержимое FlowFile\n            flowFile = session.write(flowFile, { outputStream ->\n                outputStream.write(\"${path}\\n\".getBytes(\"UTF-8\"))\n            } as OutputStreamCallback)\n\n            // Передаем FlowFile в выходное отношение\n            session.transfer(flowFile, REL_SUCCESS)\n        }\n\n} catch (Exception e) {\n    log.error(\"Ошибка при выполнении скрипта: ${e.message}\", e)\n    session.rollback()\n    return\n}",
         "absolute_path" : "D:\\temp\\1000000",
         "groovyx-failure-strategy" : "rollback",
         "groovyx-additional-classpath" : null,
@@ -42,7 +201,6 @@
           "sensitive" : false,
           "dynamic" : false
         },
-        "include_file_regex" : null,
         "absolute_path" : {
           "name" : "absolute_path",
           "displayName" : "absolute_path",
@@ -85,6 +243,86 @@
       },
       "style" : { },
       "schedulingPeriod" : "1 min",
+      "schedulingStrategy" : "TIMER_DRIVEN",
+      "executionNode" : "ALL",
+      "penaltyDuration" : "30 sec",
+      "yieldDuration" : "1 sec",
+      "bulletinLevel" : "WARN",
+      "runDurationMillis" : 0,
+      "concurrentlySchedulableTaskCount" : 1,
+      "autoTerminatedRelationships" : [ "failure" ],
+      "scheduledState" : "ENABLED",
+      "retryCount" : 10,
+      "retriedRelationships" : [ ],
+      "backoffMechanism" : "PENALIZE_FLOWFILE",
+      "maxBackoffPeriod" : "10 mins",
+      "componentType" : "PROCESSOR",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
+      "identifier" : "24eb5ac5-f254-3a23-bbd9-9fa86f86be82",
+      "instanceIdentifier" : "6763c65c-0194-1000-7169-27dcb4e63538",
+      "name" : "ExecuteGroovyScript",
+      "comments" : "",
+      "position" : {
+        "x" : 360.0,
+        "y" : -120.0
+      },
+      "type" : "org.apache.nifi.processors.groovyx.ExecuteGroovyScript",
+      "bundle" : {
+        "group" : "org.apache.nifi",
+        "artifact" : "nifi-groovyx-nar",
+        "version" : "2.1.0"
+      },
+      "properties" : {
+        "groovyx-script-body" : "import org.apache.nifi.processor.io.OutputStreamCallback\nimport org.apache.nifi.processor.io.InputStreamCallback\nimport org.apache.nifi.processor.ProcessSession\nimport java.nio.file.Paths\nimport java.nio.file.Files\nimport java.nio.file.Path\nimport java.util.regex.Pattern\nimport java.util.regex.PatternSyntaxException\n\n// Основной код\ntry {\n    // Читаем входящий FlowFile\n    def flowFile = session.get()\n    if (flowFile == null) {\n        return\n    }\n\n    // Читаем содержимое FlowFile (путь к папке)\n    def folderPath = \"\"\n    session.read(flowFile, { inputStream ->\n        folderPath = new BufferedReader(new InputStreamReader(inputStream)).readLine()\n    } as InputStreamCallback)\n\n    // Проверяем, задан ли путь к папке\n    if (!folderPath) {\n        log.error(\"Путь к папке не найден во входящем FlowFile\")\n        session.transfer(flowFile, REL_FAILURE)\n        return\n    }\n\n    // Читаем динамическое свойство процессора \"File Filter\"\n    def fileFilter = context.getProperty(\"File Filter\").getValue()\n\n    // Проверяем, валидно ли регулярное выражение\n    def pattern\n    try {\n        pattern = fileFilter ? Pattern.compile(fileFilter) : Pattern.compile(\".*\")\n    } catch (PatternSyntaxException e) {\n        log.error(\"Некорректное регулярное выражение в свойстве 'File Filter': ${fileFilter}. Используется значение по умолчанию '.*'\")\n        pattern = Pattern.compile(\".*\")\n    }\n\n    // Получаем список файлов в папке (нерекурсивно)\n    def files = Files.list(Paths.get(folderPath))\n        .filter { path -> \n            Files.isRegularFile(path) && pattern.matcher(path.fileName.toString()).matches()\n        }\n        .toList()\n\n    // Создаем FlowFile для каждого файла\n    files.each { filePath ->\n        def newFlowFile = session.create()\n\n        // Устанавливаем атрибуты\n        newFlowFile = session.putAttribute(newFlowFile, \"absolute.path\", filePath.parent.toString())\n        newFlowFile = session.putAttribute(newFlowFile, \"filename\", filePath.fileName.toString())\n\n        // Передаем FlowFile в выходное отношение\n        session.transfer(newFlowFile, REL_SUCCESS)\n    }\n\n    // Удаляем оригинальный FlowFile\n    session.remove(flowFile)\n\n} catch (Exception e) {\n    log.error(\"Ошибка при выполнении скрипта: ${e.message}\", e)\n    session.transfer(flowFile, REL_FAILURE)\n    return\n}",
+        "groovyx-failure-strategy" : "rollback",
+        "groovyx-additional-classpath" : null,
+        "File Filter" : "[^\\.].*[.]txt",
+        "groovyx-script-file" : null
+      },
+      "propertyDescriptors" : {
+        "groovyx-script-body" : {
+          "name" : "groovyx-script-body",
+          "displayName" : "Script Body",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "groovyx-failure-strategy" : {
+          "name" : "groovyx-failure-strategy",
+          "displayName" : "Failure strategy",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "groovyx-additional-classpath" : {
+          "name" : "groovyx-additional-classpath",
+          "displayName" : "Additional classpath",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "File Filter" : {
+          "name" : "File Filter",
+          "displayName" : "File Filter",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : true
+        },
+        "groovyx-script-file" : {
+          "name" : "groovyx-script-file",
+          "displayName" : "Script File",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false,
+          "resourceDefinition" : {
+            "cardinality" : "SINGLE",
+            "resourceTypes" : [ "FILE" ]
+          }
+        }
+      },
+      "style" : { },
+      "schedulingPeriod" : "0 sec",
       "schedulingStrategy" : "TIMER_DRIVEN",
       "executionNode" : "ALL",
       "penaltyDuration" : "30 sec",
@@ -200,7 +438,7 @@
         "version" : "2.1.0"
       },
       "properties" : {
-        "nullable-fields" : "true",
+        "nullable-fields" : "false",
         "number-of-records" : "10000",
         "test" : "Address.zipCode",
         "record-writer" : "c2017ad8-c1f2-3c5a-a3c2-d43a872f0240",
@@ -337,6 +575,92 @@
       "runDurationMillis" : 0,
       "concurrentlySchedulableTaskCount" : 1,
       "autoTerminatedRelationships" : [ "original", "failure" ],
+      "scheduledState" : "ENABLED",
+      "retryCount" : 10,
+      "retriedRelationships" : [ ],
+      "backoffMechanism" : "PENALIZE_FLOWFILE",
+      "maxBackoffPeriod" : "10 mins",
+      "componentType" : "PROCESSOR",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
+      "identifier" : "7676217f-0194-1000-5f57-729938087696",
+      "instanceIdentifier" : "5313d0da-942a-3231-8d05-6d8e452e6b0a",
+      "name" : "EvaluateJsonPath",
+      "comments" : "",
+      "position" : {
+        "x" : 1152.0,
+        "y" : 416.0
+      },
+      "type" : "org.apache.nifi.processors.standard.EvaluateJsonPath",
+      "bundle" : {
+        "group" : "org.apache.nifi",
+        "artifact" : "nifi-standard-nar",
+        "version" : "2.1.0"
+      },
+      "properties" : {
+        "absolute.path" : null,
+        "Destination" : "flowfile-attribute",
+        "filename" : "$",
+        "Max String Length" : "20 MB",
+        "Return Type" : "scalar",
+        "Null Value Representation" : "empty string",
+        "Path Not Found Behavior" : "ignore"
+      },
+      "propertyDescriptors" : {
+        "absolute.path" : null,
+        "Destination" : {
+          "name" : "Destination",
+          "displayName" : "Destination",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "filename" : {
+          "name" : "filename",
+          "displayName" : "filename",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : true
+        },
+        "Max String Length" : {
+          "name" : "Max String Length",
+          "displayName" : "Max String Length",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Return Type" : {
+          "name" : "Return Type",
+          "displayName" : "Return Type",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Null Value Representation" : {
+          "name" : "Null Value Representation",
+          "displayName" : "Null Value Representation",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Path Not Found Behavior" : {
+          "name" : "Path Not Found Behavior",
+          "displayName" : "Path Not Found Behavior",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        }
+      },
+      "style" : { },
+      "schedulingPeriod" : "0 sec",
+      "schedulingStrategy" : "TIMER_DRIVEN",
+      "executionNode" : "ALL",
+      "penaltyDuration" : "30 sec",
+      "yieldDuration" : "1 sec",
+      "bulletinLevel" : "WARN",
+      "runDurationMillis" : 25,
+      "concurrentlySchedulableTaskCount" : 1,
+      "autoTerminatedRelationships" : [ "failure", "unmatched" ],
       "scheduledState" : "ENABLED",
       "retryCount" : 10,
       "retriedRelationships" : [ ],
@@ -573,13 +897,89 @@
       "componentType" : "PROCESSOR",
       "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
     }, {
+      "identifier" : "7674e76e-0194-1000-11ea-b684c2297cca",
+      "instanceIdentifier" : "d4bb3363-14e3-3c8d-141a-2c4233975ecd",
+      "name" : "SplitText",
+      "comments" : "",
+      "position" : {
+        "x" : 1152.0,
+        "y" : 8.0
+      },
+      "type" : "org.apache.nifi.processors.standard.SplitText",
+      "bundle" : {
+        "group" : "org.apache.nifi",
+        "artifact" : "nifi-standard-nar",
+        "version" : "2.1.0"
+      },
+      "properties" : {
+        "Remove Trailing Newlines" : "true",
+        "Maximum Fragment Size" : null,
+        "Header Line Marker Characters" : null,
+        "Header Line Count" : "0",
+        "Line Split Count" : "1000"
+      },
+      "propertyDescriptors" : {
+        "Remove Trailing Newlines" : {
+          "name" : "Remove Trailing Newlines",
+          "displayName" : "Remove Trailing Newlines",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Maximum Fragment Size" : {
+          "name" : "Maximum Fragment Size",
+          "displayName" : "Maximum Fragment Size",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Header Line Marker Characters" : {
+          "name" : "Header Line Marker Characters",
+          "displayName" : "Header Line Marker Characters",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Header Line Count" : {
+          "name" : "Header Line Count",
+          "displayName" : "Header Line Count",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Line Split Count" : {
+          "name" : "Line Split Count",
+          "displayName" : "Line Split Count",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        }
+      },
+      "style" : { },
+      "schedulingPeriod" : "0 sec",
+      "schedulingStrategy" : "TIMER_DRIVEN",
+      "executionNode" : "ALL",
+      "penaltyDuration" : "30 sec",
+      "yieldDuration" : "1 sec",
+      "bulletinLevel" : "WARN",
+      "runDurationMillis" : 0,
+      "concurrentlySchedulableTaskCount" : 1,
+      "autoTerminatedRelationships" : [ "original", "failure" ],
+      "scheduledState" : "ENABLED",
+      "retryCount" : 10,
+      "retriedRelationships" : [ ],
+      "backoffMechanism" : "PENALIZE_FLOWFILE",
+      "maxBackoffPeriod" : "10 mins",
+      "componentType" : "PROCESSOR",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
       "identifier" : "b68b059c-6086-391d-8b79-56ea4aef1d5d",
       "instanceIdentifier" : "33353061-0194-1000-c5d8-7d89fcdee3c6",
       "name" : "ExecuteStreamCommand",
       "comments" : "",
       "position" : {
-        "x" : 1168.0,
-        "y" : -32.0
+        "x" : 1152.0,
+        "y" : -128.0
       },
       "type" : "org.apache.nifi.processors.standard.ExecuteStreamCommand",
       "bundle" : {
@@ -592,11 +992,11 @@
         "Max Attribute Length" : "256",
         "Output MIME Type" : null,
         "Working Directory" : "${absolute.path}",
-        "Command Path" : "cmd",
+        "Command Path" : "powershell",
         "Output Destination Attribute" : null,
         "Argument Delimiter" : " ",
         "Ignore STDIN" : "false",
-        "Command Arguments" : "/c \"dir /b /s *.xml\""
+        "Command Arguments" : "-Command \"Get-ChildItem -Recurse -Path '${absolute.path}' -Filter ${file_mask} | ForEach-Object { [char]34 + ($_.FullName.Substring('${absolute.path}'.Length + 1) -replace '\\\\', '/') + [char]34 }\""
       },
       "propertyDescriptors" : {
         "argumentsStrategy" : {
@@ -786,8 +1186,8 @@
       "name" : "FetchFile",
       "comments" : "",
       "position" : {
-        "x" : 424.0,
-        "y" : 264.0
+        "x" : -1136.0,
+        "y" : -112.0
       },
       "type" : "org.apache.nifi.processors.standard.FetchFile",
       "bundle" : {
@@ -865,254 +1265,6 @@
       "componentType" : "PROCESSOR",
       "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
     }, {
-      "identifier" : "433bf339-651c-33f3-9c4f-f8d5d70ca7e6",
-      "instanceIdentifier" : "320c694a-0194-1000-4467-cacf6280f5e1",
-      "name" : "FetchFile",
-      "comments" : "",
-      "position" : {
-        "x" : -1104.0,
-        "y" : 152.0
-      },
-      "type" : "org.apache.nifi.processors.standard.FetchFile",
-      "bundle" : {
-        "group" : "org.apache.nifi",
-        "artifact" : "nifi-standard-nar",
-        "version" : "2.1.0"
-      },
-      "properties" : {
-        "Move Conflict Strategy" : "Rename",
-        "Log level when file not found" : "ERROR",
-        "Move Destination Directory" : null,
-        "Log level when permission denied" : "ERROR",
-        "File to Fetch" : "${absolute.path}/${filename}",
-        "Completion Strategy" : "None"
-      },
-      "propertyDescriptors" : {
-        "Move Conflict Strategy" : {
-          "name" : "Move Conflict Strategy",
-          "displayName" : "Move Conflict Strategy",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Log level when file not found" : {
-          "name" : "Log level when file not found",
-          "displayName" : "Log level when file not found",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Move Destination Directory" : {
-          "name" : "Move Destination Directory",
-          "displayName" : "Move Destination Directory",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Log level when permission denied" : {
-          "name" : "Log level when permission denied",
-          "displayName" : "Log level when permission denied",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "File to Fetch" : {
-          "name" : "File to Fetch",
-          "displayName" : "File to Fetch",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Completion Strategy" : {
-          "name" : "Completion Strategy",
-          "displayName" : "Completion Strategy",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        }
-      },
-      "style" : { },
-      "schedulingPeriod" : "0 sec",
-      "schedulingStrategy" : "TIMER_DRIVEN",
-      "executionNode" : "ALL",
-      "penaltyDuration" : "30 sec",
-      "yieldDuration" : "1 sec",
-      "bulletinLevel" : "WARN",
-      "runDurationMillis" : 0,
-      "concurrentlySchedulableTaskCount" : 2,
-      "autoTerminatedRelationships" : [ ],
-      "scheduledState" : "ENABLED",
-      "retryCount" : 10,
-      "retriedRelationships" : [ ],
-      "backoffMechanism" : "PENALIZE_FLOWFILE",
-      "maxBackoffPeriod" : "10 mins",
-      "componentType" : "PROCESSOR",
-      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
-    }, {
-      "identifier" : "f68c72d9-718e-3f4c-b930-5e59a9e91e67",
-      "instanceIdentifier" : "320da993-0194-1000-ea6f-851f1f126190",
-      "name" : "ExtractText",
-      "comments" : "",
-      "position" : {
-        "x" : -1104.0,
-        "y" : 16.0
-      },
-      "type" : "org.apache.nifi.processors.standard.ExtractText",
-      "bundle" : {
-        "group" : "org.apache.nifi",
-        "artifact" : "nifi-standard-nar",
-        "version" : "2.1.0"
-      },
-      "properties" : {
-        "Enable Unicode Predefined Character Classes" : "false",
-        "Permit Whitespace and Comments in Pattern" : "false",
-        "Enable Unicode-aware Case Folding" : "false",
-        "Enable named group support" : "false",
-        "Enable DOTALL Mode" : "false",
-        "Enable Unix Lines Mode" : "false",
-        "Maximum Buffer Size" : "1 MB",
-        "Enable Canonical Equivalence" : "false",
-        "Enable Case-insensitive Matching" : "false",
-        "Enable Multiline Mode" : "false",
-        "filename" : "(.*)",
-        "Enable repeating capture group" : "false",
-        "Maximum Capture Group Length" : "1024",
-        "Enable Literal Parsing of the Pattern" : "false",
-        "Character Set" : "UTF-8",
-        "Include Capture Group 0" : "false"
-      },
-      "propertyDescriptors" : {
-        "Enable Unicode Predefined Character Classes" : {
-          "name" : "Enable Unicode Predefined Character Classes",
-          "displayName" : "Enable Unicode Predefined Character Classes",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Permit Whitespace and Comments in Pattern" : {
-          "name" : "Permit Whitespace and Comments in Pattern",
-          "displayName" : "Permit Whitespace and Comments in Pattern",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Enable Unicode-aware Case Folding" : {
-          "name" : "Enable Unicode-aware Case Folding",
-          "displayName" : "Enable Unicode-aware Case Folding",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Enable named group support" : {
-          "name" : "Enable named group support",
-          "displayName" : "Enable named group support",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Enable DOTALL Mode" : {
-          "name" : "Enable DOTALL Mode",
-          "displayName" : "Enable DOTALL Mode",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Enable Unix Lines Mode" : {
-          "name" : "Enable Unix Lines Mode",
-          "displayName" : "Enable Unix Lines Mode",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Maximum Buffer Size" : {
-          "name" : "Maximum Buffer Size",
-          "displayName" : "Maximum Buffer Size",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Enable Canonical Equivalence" : {
-          "name" : "Enable Canonical Equivalence",
-          "displayName" : "Enable Canonical Equivalence",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Enable Case-insensitive Matching" : {
-          "name" : "Enable Case-insensitive Matching",
-          "displayName" : "Enable Case-insensitive Matching",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Enable Multiline Mode" : {
-          "name" : "Enable Multiline Mode",
-          "displayName" : "Enable Multiline Mode",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "filename" : {
-          "name" : "filename",
-          "displayName" : "filename",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : true
-        },
-        "Enable repeating capture group" : {
-          "name" : "Enable repeating capture group",
-          "displayName" : "Enable repeating capture group",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Maximum Capture Group Length" : {
-          "name" : "Maximum Capture Group Length",
-          "displayName" : "Maximum Capture Group Length",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Enable Literal Parsing of the Pattern" : {
-          "name" : "Enable Literal Parsing of the Pattern",
-          "displayName" : "Enable Literal Parsing of the Pattern",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Character Set" : {
-          "name" : "Character Set",
-          "displayName" : "Character Set",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Include Capture Group 0" : {
-          "name" : "Include Capture Group 0",
-          "displayName" : "Include Capture Group 0",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        }
-      },
-      "style" : { },
-      "schedulingPeriod" : "0 sec",
-      "schedulingStrategy" : "TIMER_DRIVEN",
-      "executionNode" : "ALL",
-      "penaltyDuration" : "30 sec",
-      "yieldDuration" : "1 sec",
-      "bulletinLevel" : "WARN",
-      "runDurationMillis" : 25,
-      "concurrentlySchedulableTaskCount" : 1,
-      "autoTerminatedRelationships" : [ "unmatched" ],
-      "scheduledState" : "ENABLED",
-      "retryCount" : 10,
-      "retriedRelationships" : [ ],
-      "backoffMechanism" : "PENALIZE_FLOWFILE",
-      "maxBackoffPeriod" : "10 mins",
-      "componentType" : "PROCESSOR",
-      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
-    }, {
       "identifier" : "6b16499a-3366-359b-9dc5-b326bf165c5e",
       "instanceIdentifier" : "31710d73-0194-1000-c714-373ad86c0a99",
       "name" : "ListFile",
@@ -1137,7 +1289,7 @@
         "et-time-window" : "3 hours",
         "et-node-identifier" : "${hostname()}",
         "Recurse Subdirectories" : "true",
-        "File Filter" : "[^\\.].*[.]xml",
+        "File Filter" : "[^\\.].*[.]txt",
         "Path Filter" : null,
         "Include File Attributes" : "false",
         "Input Directory Location" : "Local",
@@ -1342,7 +1494,7 @@
       "properties" : {
         "absolute.path" : "d:\\temp\\1000000\\${random():mod(100):plus(1)}",
         "Delete Attributes Expression" : null,
-        "filename" : "${uuid}.xml",
+        "filename" : "${uuid}.txt",
         "Store State" : "Do not store state",
         "canonical-value-lookup-cache-size" : "100",
         "Stateful Variables Initial Value" : null
@@ -1409,13 +1561,85 @@
       "componentType" : "PROCESSOR",
       "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
     }, {
+      "identifier" : "ccf8624f-45a9-3bbe-9b89-86f7de0b74fe",
+      "instanceIdentifier" : "76968055-0194-1000-60d5-cb02317ff6d4",
+      "name" : "UpdateAttribute",
+      "comments" : "",
+      "position" : {
+        "x" : 1152.0,
+        "y" : 280.0
+      },
+      "type" : "org.apache.nifi.processors.attributes.UpdateAttribute",
+      "bundle" : {
+        "group" : "org.apache.nifi",
+        "artifact" : "nifi-update-attribute-nar",
+        "version" : "2.1.0"
+      },
+      "properties" : {
+        "absolute.path" : null,
+        "Delete Attributes Expression" : "execution.*|fragment.*|segment.*|file_mask|text.*",
+        "filename" : null,
+        "Store State" : "Do not store state",
+        "canonical-value-lookup-cache-size" : "100",
+        "Stateful Variables Initial Value" : null
+      },
+      "propertyDescriptors" : {
+        "absolute.path" : null,
+        "Delete Attributes Expression" : {
+          "name" : "Delete Attributes Expression",
+          "displayName" : "Delete Attributes Expression",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "filename" : null,
+        "Store State" : {
+          "name" : "Store State",
+          "displayName" : "Store State",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "canonical-value-lookup-cache-size" : {
+          "name" : "canonical-value-lookup-cache-size",
+          "displayName" : "Cache Value Lookup Cache Size",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Stateful Variables Initial Value" : {
+          "name" : "Stateful Variables Initial Value",
+          "displayName" : "Stateful Variables Initial Value",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        }
+      },
+      "style" : { },
+      "schedulingPeriod" : "0 sec",
+      "schedulingStrategy" : "TIMER_DRIVEN",
+      "executionNode" : "ALL",
+      "penaltyDuration" : "30 sec",
+      "yieldDuration" : "1 sec",
+      "bulletinLevel" : "WARN",
+      "runDurationMillis" : 25,
+      "concurrentlySchedulableTaskCount" : 1,
+      "autoTerminatedRelationships" : [ ],
+      "scheduledState" : "ENABLED",
+      "retryCount" : 10,
+      "retriedRelationships" : [ ],
+      "backoffMechanism" : "PENALIZE_FLOWFILE",
+      "maxBackoffPeriod" : "10 mins",
+      "componentType" : "PROCESSOR",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
       "identifier" : "5b5fced6-f480-330b-9b17-84b6753ea559",
       "instanceIdentifier" : "33372b97-0194-1000-1456-8dccaee8fb63",
       "name" : "GenerateFlowFile",
       "comments" : "",
       "position" : {
-        "x" : 1168.0,
-        "y" : -248.0
+        "x" : 1152.0,
+        "y" : -264.0
       },
       "type" : "org.apache.nifi.processors.standard.GenerateFlowFile",
       "bundle" : {
@@ -1431,6 +1655,7 @@
         "generate-ff-custom-text" : null,
         "Batch Size" : "1",
         "Unique FlowFiles" : "false",
+        "file_mask" : "*.txt",
         "Data Format" : "Text"
       },
       "propertyDescriptors" : {
@@ -1483,6 +1708,13 @@
           "sensitive" : false,
           "dynamic" : false
         },
+        "file_mask" : {
+          "name" : "file_mask",
+          "displayName" : "file_mask",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : true
+        },
         "Data Format" : {
           "name" : "Data Format",
           "displayName" : "Data Format",
@@ -1514,8 +1746,8 @@
       "name" : "ListFile",
       "comments" : "",
       "position" : {
-        "x" : 424.0,
-        "y" : 120.0
+        "x" : -1136.0,
+        "y" : -256.0
       },
       "type" : "org.apache.nifi.processors.standard.ListFile",
       "bundle" : {
@@ -1533,7 +1765,7 @@
         "et-time-window" : "3 hours",
         "et-node-identifier" : "${hostname()}",
         "Recurse Subdirectories" : "true",
-        "File Filter" : "[^\\.].*[.]xml",
+        "File Filter" : "[^\\.].*[.]txt",
         "Path Filter" : null,
         "Include File Attributes" : "false",
         "Input Directory Location" : "Local",
@@ -1797,59 +2029,67 @@
       "componentType" : "PROCESSOR",
       "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
     }, {
-      "identifier" : "cbbea789-5974-3edd-b482-d6e41b85d3d7",
-      "instanceIdentifier" : "320bd30e-0194-1000-b217-d44893d2b9d9",
-      "name" : "SplitText",
+      "identifier" : "7676fc1b-0194-1000-9c92-9e2fd964657c",
+      "instanceIdentifier" : "9a3a39e9-b460-3232-8960-257322a7a9c6",
+      "name" : "FetchFile",
       "comments" : "",
       "position" : {
-        "x" : -1104.0,
-        "y" : -120.0
+        "x" : 1152.0,
+        "y" : 552.0
       },
-      "type" : "org.apache.nifi.processors.standard.SplitText",
+      "type" : "org.apache.nifi.processors.standard.FetchFile",
       "bundle" : {
         "group" : "org.apache.nifi",
         "artifact" : "nifi-standard-nar",
         "version" : "2.1.0"
       },
       "properties" : {
-        "Remove Trailing Newlines" : "true",
-        "Maximum Fragment Size" : null,
-        "Header Line Marker Characters" : null,
-        "Header Line Count" : "0",
-        "Line Split Count" : "1"
+        "Move Conflict Strategy" : "Replace File",
+        "Log level when file not found" : "ERROR",
+        "Move Destination Directory" : null,
+        "Log level when permission denied" : "ERROR",
+        "File to Fetch" : "${absolute.path}/${filename}",
+        "Completion Strategy" : "None"
       },
       "propertyDescriptors" : {
-        "Remove Trailing Newlines" : {
-          "name" : "Remove Trailing Newlines",
-          "displayName" : "Remove Trailing Newlines",
+        "Move Conflict Strategy" : {
+          "name" : "Move Conflict Strategy",
+          "displayName" : "Move Conflict Strategy",
           "identifiesControllerService" : false,
           "sensitive" : false,
           "dynamic" : false
         },
-        "Maximum Fragment Size" : {
-          "name" : "Maximum Fragment Size",
-          "displayName" : "Maximum Fragment Size",
+        "Log level when file not found" : {
+          "name" : "Log level when file not found",
+          "displayName" : "Log level when file not found",
           "identifiesControllerService" : false,
           "sensitive" : false,
           "dynamic" : false
         },
-        "Header Line Marker Characters" : {
-          "name" : "Header Line Marker Characters",
-          "displayName" : "Header Line Marker Characters",
+        "Move Destination Directory" : {
+          "name" : "Move Destination Directory",
+          "displayName" : "Move Destination Directory",
           "identifiesControllerService" : false,
           "sensitive" : false,
           "dynamic" : false
         },
-        "Header Line Count" : {
-          "name" : "Header Line Count",
-          "displayName" : "Header Line Count",
+        "Log level when permission denied" : {
+          "name" : "Log level when permission denied",
+          "displayName" : "Log level when permission denied",
           "identifiesControllerService" : false,
           "sensitive" : false,
           "dynamic" : false
         },
-        "Line Split Count" : {
-          "name" : "Line Split Count",
-          "displayName" : "Line Split Count",
+        "File to Fetch" : {
+          "name" : "File to Fetch",
+          "displayName" : "File to Fetch",
+          "identifiesControllerService" : false,
+          "sensitive" : false,
+          "dynamic" : false
+        },
+        "Completion Strategy" : {
+          "name" : "Completion Strategy",
+          "displayName" : "Completion Strategy",
           "identifiesControllerService" : false,
           "sensitive" : false,
           "dynamic" : false
@@ -1863,104 +2103,8 @@
       "yieldDuration" : "1 sec",
       "bulletinLevel" : "WARN",
       "runDurationMillis" : 0,
-      "concurrentlySchedulableTaskCount" : 1,
-      "autoTerminatedRelationships" : [ "original", "failure" ],
-      "scheduledState" : "ENABLED",
-      "retryCount" : 10,
-      "retriedRelationships" : [ ],
-      "backoffMechanism" : "PENALIZE_FLOWFILE",
-      "maxBackoffPeriod" : "10 mins",
-      "componentType" : "PROCESSOR",
-      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
-    }, {
-      "identifier" : "499317fb-29fb-3937-82ee-2e1bc5291c8b",
-      "instanceIdentifier" : "31b9ed25-0194-1000-40c2-f2e19658a77e",
-      "name" : "ExecuteGroovyScript",
-      "comments" : "",
-      "position" : {
-        "x" : -1104.0,
-        "y" : -256.0
-      },
-      "type" : "org.apache.nifi.processors.groovyx.ExecuteGroovyScript",
-      "bundle" : {
-        "group" : "org.apache.nifi",
-        "artifact" : "nifi-groovyx-nar",
-        "version" : "2.1.0"
-      },
-      "properties" : {
-        "groovyx-script-body" : "import org.apache.nifi.processor.io.OutputStreamCallback\nimport org.apache.nifi.processor.ProcessSession\nimport java.nio.file.Paths\n\n// Функция для рекурсивного обхода папки\ndef traverseFolder(File folder, String relativePath, ProcessSession session, def excludePattern, def includePattern, def baseFolderPath) {\n    // Получаем список файлов и подпапок в текущей папке\n    def files = folder.listFiles()\n\n    // Если папка пуста, выходим\n    if (files == null || files.length == 0) {\n        return\n    }\n\n    // Собираем список файлов в текущей папке\n    def fileList = []\n    files.each { file ->\n        // Проверяем, не исключается ли файл или папка по регулярному выражению\n        if (excludePattern && file.name =~ excludePattern) {\n            log.debug(\"Исключен путь: ${file.name}\")\n            return // Пропускаем этот файл или папку\n        }\n\n        if (file.isFile()) {\n            // Проверяем, соответствует ли файл регулярному выражению для включения\n            if (includePattern && !(file.name =~ includePattern)) {\n                log.debug(\"Файл не соответствует include_regex: ${file.name}\")\n                return // Пропускаем этот файл\n            }\n\n            // Добавляем только имя файла (без пути)\n            fileList << file.name\n        } else if (file.isDirectory()) {\n            // Рекурсивно обходим подпапку\n            traverseFolder(file, relativePath + \"/\" + file.name, session, excludePattern, includePattern, baseFolderPath)\n        }\n    }\n\n    // Если в папке есть файлы, создаем FlowFile\n    if (fileList.size() > 0) {\n        // Создаем новый FlowFile\n        def flowFile = session.create()\n\n        // Формируем полный путь к папке с использованием Paths\n        def fullFolderPath = Paths.get(baseFolderPath, relativePath).toString()\n\n        // Устанавливаем атрибут с полным путём к папке\n        flowFile = session.putAttribute(flowFile, \"absolute.path\", fullFolderPath)\n\n        // Устанавливаем атрибут mime.type\n        flowFile = session.putAttribute(flowFile, \"mime.type\", \"text/plain\")\n\n        // Записываем список файлов в содержимое FlowFile\n        flowFile = session.write(flowFile, { outputStream ->\n            fileList.each { fileName ->\n                outputStream.write((fileName + \"\\n\").getBytes(\"UTF-8\"))\n            }\n        } as OutputStreamCallback)\n\n        // Передаем FlowFile в выходное отношение\n        session.transfer(flowFile, REL_SUCCESS)\n    }\n}\n\n// Глобальные переменные\ndef folderPath = absolute_path.value\nexcludeRegex = exclude_folder_regex.value ?: null\ndef excludePattern = excludeRegex ? ~excludeRegex : null\nincludeRegex = include_file_regex.value ?: null\ndef includePattern = includeRegex ? ~/(?i)${includeRegex}/ : null // Добавляем (?i) для case-insensitive\n\n// Проверяем, задан ли путь к папке\nif (!folderPath) {\n    throw new IllegalStateException(\"Не задан путь в свойстве absolute_path\")\n}\n\n// Проверяем, существует ли папка и является ли она директорией\ndef folder = new File(folderPath)\nif (!folder.exists() || !folder.isDirectory()) {\n    throw new IllegalStateException(\"Указанная папка не существует или не является директорией: ${folderPath}\")\n}\n\n// Основной код\ntry {\n    // Начинаем рекурсивный обход с корневой папки\n    traverseFolder(folder, \"\", session, excludePattern, includePattern, folderPath)\n\n} catch (Exception e) {\n    log.error(\"Ошибка при выполнении скрипта: ${e.message}\", e)\n    session.rollback()\n    return\n}",
-        "include_file_regex" : ".+[.]xml",
-        "absolute_path" : "D:\\temp\\1000000",
-        "groovyx-failure-strategy" : "rollback",
-        "groovyx-additional-classpath" : null,
-        "exclude_folder_regex" : "^[.].*",
-        "groovyx-script-file" : null
-      },
-      "propertyDescriptors" : {
-        "groovyx-script-body" : {
-          "name" : "groovyx-script-body",
-          "displayName" : "Script Body",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "include_file_regex" : {
-          "name" : "include_file_regex",
-          "displayName" : "include_file_regex",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : true
-        },
-        "absolute_path" : {
-          "name" : "absolute_path",
-          "displayName" : "absolute_path",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : true
-        },
-        "groovyx-failure-strategy" : {
-          "name" : "groovyx-failure-strategy",
-          "displayName" : "Failure strategy",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "groovyx-additional-classpath" : {
-          "name" : "groovyx-additional-classpath",
-          "displayName" : "Additional classpath",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "exclude_folder_regex" : {
-          "name" : "exclude_folder_regex",
-          "displayName" : "exclude_folder_regex",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : true
-        },
-        "groovyx-script-file" : {
-          "name" : "groovyx-script-file",
-          "displayName" : "Script File",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false,
-          "resourceDefinition" : {
-            "cardinality" : "SINGLE",
-            "resourceTypes" : [ "FILE" ]
-          }
-        }
-      },
-      "style" : { },
-      "schedulingPeriod" : "1 min",
-      "schedulingStrategy" : "TIMER_DRIVEN",
-      "executionNode" : "ALL",
-      "penaltyDuration" : "30 sec",
-      "yieldDuration" : "1 sec",
-      "bulletinLevel" : "WARN",
-      "runDurationMillis" : 0,
-      "concurrentlySchedulableTaskCount" : 1,
-      "autoTerminatedRelationships" : [ "failure" ],
+      "concurrentlySchedulableTaskCount" : 2,
+      "autoTerminatedRelationships" : [ ],
       "scheduledState" : "ENABLED",
       "retryCount" : 10,
       "retriedRelationships" : [ ],
@@ -1972,33 +2116,36 @@
     "inputPorts" : [ ],
     "outputPorts" : [ ],
     "connections" : [ {
-      "identifier" : "bc332cee-ddaa-3dd1-8ab8-df85d06ac453",
-      "instanceIdentifier" : "320e6178-0194-1000-7873-068f12e2e185",
+      "identifier" : "304c6e6e-1148-39fe-a3c3-a9b774175c44",
+      "instanceIdentifier" : "7675475c-0194-1000-aa0e-64cd4169eb4d",
       "name" : "",
       "source" : {
-        "id" : "433bf339-651c-33f3-9c4f-f8d5d70ca7e6",
+        "id" : "7674e76e-0194-1000-11ea-b684c2297cca",
         "type" : "PROCESSOR",
         "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
-        "name" : "FetchFile",
+        "name" : "SplitText",
         "comments" : "",
-        "instanceIdentifier" : "320c694a-0194-1000-4467-cacf6280f5e1"
+        "instanceIdentifier" : "d4bb3363-14e3-3c8d-141a-2c4233975ecd"
       },
       "destination" : {
-        "id" : "14997f45-4884-3a45-aae5-bc1b3d560a46",
-        "type" : "FUNNEL",
+        "id" : "7674e76f-0194-1000-17a1-16fc5df78e57",
+        "type" : "PROCESSOR",
         "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
-        "name" : "Funnel",
+        "name" : "SplitText",
         "comments" : "",
-        "instanceIdentifier" : "320e4ad9-0194-1000-6c3a-6ecd85d10701"
+        "instanceIdentifier" : "bf4aba02-f036-3af5-0f80-28061fbc245a"
       },
       "labelIndex" : 0,
       "zIndex" : 0,
-      "selectedRelationships" : [ "failure", "permission.denied", "not.found" ],
-      "backPressureObjectThreshold" : 10000,
+      "selectedRelationships" : [ "splits" ],
+      "backPressureObjectThreshold" : 1,
       "backPressureDataSizeThreshold" : "1 GB",
       "flowFileExpiration" : "0 sec",
       "prioritizers" : [ ],
-      "bends" : [ ],
+      "bends" : [ {
+        "x" : 1648.0,
+        "y" : 144.0
+      } ],
       "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
       "partitioningAttribute" : "",
       "loadBalanceCompression" : "DO_NOT_COMPRESS",
@@ -2032,44 +2179,8 @@
       "flowFileExpiration" : "0 sec",
       "prioritizers" : [ ],
       "bends" : [ {
-        "x" : 920.0,
-        "y" : 256.0
-      } ],
-      "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-      "partitioningAttribute" : "",
-      "loadBalanceCompression" : "DO_NOT_COMPRESS",
-      "componentType" : "CONNECTION",
-      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
-    }, {
-      "identifier" : "6066a269-3c10-3d6b-a6a0-fad0d6afa249",
-      "instanceIdentifier" : "320dd76a-0194-1000-0dc9-3f8dd1243f39",
-      "name" : "",
-      "source" : {
-        "id" : "f68c72d9-718e-3f4c-b930-5e59a9e91e67",
-        "type" : "PROCESSOR",
-        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
-        "name" : "ExtractText",
-        "comments" : "",
-        "instanceIdentifier" : "320da993-0194-1000-ea6f-851f1f126190"
-      },
-      "destination" : {
-        "id" : "433bf339-651c-33f3-9c4f-f8d5d70ca7e6",
-        "type" : "PROCESSOR",
-        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
-        "name" : "FetchFile",
-        "comments" : "",
-        "instanceIdentifier" : "320c694a-0194-1000-4467-cacf6280f5e1"
-      },
-      "labelIndex" : 0,
-      "zIndex" : 0,
-      "selectedRelationships" : [ "matched" ],
-      "backPressureObjectThreshold" : 10,
-      "backPressureDataSizeThreshold" : "1 GB",
-      "flowFileExpiration" : "0 sec",
-      "prioritizers" : [ ],
-      "bends" : [ {
-        "x" : -616.0,
-        "y" : 152.0
+        "x" : -642.4704895019531,
+        "y" : -124.12843322753906
       } ],
       "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
       "partitioningAttribute" : "",
@@ -2103,42 +2214,9 @@
       "backPressureDataSizeThreshold" : "1 GB",
       "flowFileExpiration" : "0 sec",
       "prioritizers" : [ ],
-      "bends" : [ ],
-      "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-      "partitioningAttribute" : "",
-      "loadBalanceCompression" : "DO_NOT_COMPRESS",
-      "componentType" : "CONNECTION",
-      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
-    }, {
-      "identifier" : "9729c731-60fd-31c3-b1fb-9a12e7e5e781",
-      "instanceIdentifier" : "31ba1235-0194-1000-53db-a31006aef7fc",
-      "name" : "",
-      "source" : {
-        "id" : "499317fb-29fb-3937-82ee-2e1bc5291c8b",
-        "type" : "PROCESSOR",
-        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
-        "name" : "ExecuteGroovyScript",
-        "comments" : "",
-        "instanceIdentifier" : "31b9ed25-0194-1000-40c2-f2e19658a77e"
-      },
-      "destination" : {
-        "id" : "cbbea789-5974-3edd-b482-d6e41b85d3d7",
-        "type" : "PROCESSOR",
-        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
-        "name" : "SplitText",
-        "comments" : "",
-        "instanceIdentifier" : "320bd30e-0194-1000-b217-d44893d2b9d9"
-      },
-      "labelIndex" : 0,
-      "zIndex" : 0,
-      "selectedRelationships" : [ "success" ],
-      "backPressureObjectThreshold" : 10000,
-      "backPressureDataSizeThreshold" : "1 GB",
-      "flowFileExpiration" : "0 sec",
-      "prioritizers" : [ ],
       "bends" : [ {
-        "x" : -608.0,
-        "y" : -120.0
+        "x" : 1640.0,
+        "y" : -128.0
       } ],
       "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
       "partitioningAttribute" : "",
@@ -2182,6 +2260,39 @@
       "componentType" : "CONNECTION",
       "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
     }, {
+      "identifier" : "7676fc1f-0194-1000-915d-c84cab650760",
+      "instanceIdentifier" : "db79b257-65d8-3d49-e913-80d2f31579c6",
+      "name" : "",
+      "source" : {
+        "id" : "7676fc1b-0194-1000-9c92-9e2fd964657c",
+        "type" : "PROCESSOR",
+        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
+        "name" : "FetchFile",
+        "comments" : "",
+        "instanceIdentifier" : "9a3a39e9-b460-3232-8960-257322a7a9c6"
+      },
+      "destination" : {
+        "id" : "7676fc1c-0194-1000-833e-9977c5c29f25",
+        "type" : "FUNNEL",
+        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
+        "name" : "Funnel",
+        "comments" : "",
+        "instanceIdentifier" : "f5796764-82db-36c0-592d-1c771c2ef660"
+      },
+      "labelIndex" : 0,
+      "zIndex" : 0,
+      "selectedRelationships" : [ "failure", "permission.denied", "not.found" ],
+      "backPressureObjectThreshold" : 10000,
+      "backPressureDataSizeThreshold" : "1 GB",
+      "flowFileExpiration" : "0 sec",
+      "prioritizers" : [ ],
+      "bends" : [ ],
+      "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+      "partitioningAttribute" : "",
+      "loadBalanceCompression" : "DO_NOT_COMPRESS",
+      "componentType" : "CONNECTION",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
       "identifier" : "7e203585-8b7d-3bbc-83c9-83f481a970e9",
       "instanceIdentifier" : "32837b69-0194-1000-0e42-445a7cc59fbb",
       "name" : "",
@@ -2194,12 +2305,12 @@
         "instanceIdentifier" : "c745dd4f-35e8-3754-47f3-c2adf120c447"
       },
       "destination" : {
-        "id" : "80f50377-3778-3db6-a058-d57cfc06653f",
-        "type" : "FUNNEL",
+        "id" : "24eb5ac5-f254-3a23-bbd9-9fa86f86be82",
+        "type" : "PROCESSOR",
         "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
-        "name" : "Funnel",
+        "name" : "ExecuteGroovyScript",
         "comments" : "",
-        "instanceIdentifier" : "3283638a-0194-1000-5066-2a0e4cc8fce0"
+        "instanceIdentifier" : "6763c65c-0194-1000-7169-27dcb4e63538"
       },
       "labelIndex" : 0,
       "zIndex" : 0,
@@ -2208,40 +2319,10 @@
       "backPressureDataSizeThreshold" : "1 GB",
       "flowFileExpiration" : "0 sec",
       "prioritizers" : [ ],
-      "bends" : [ ],
-      "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-      "partitioningAttribute" : "",
-      "loadBalanceCompression" : "DO_NOT_COMPRESS",
-      "componentType" : "CONNECTION",
-      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
-    }, {
-      "identifier" : "9b2fff3b-a9dd-3536-b926-0e0f53b3ee8c",
-      "instanceIdentifier" : "320e3702-0194-1000-f389-ed0cc5cd9bfc",
-      "name" : "",
-      "source" : {
-        "id" : "433bf339-651c-33f3-9c4f-f8d5d70ca7e6",
-        "type" : "PROCESSOR",
-        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
-        "name" : "FetchFile",
-        "comments" : "",
-        "instanceIdentifier" : "320c694a-0194-1000-4467-cacf6280f5e1"
-      },
-      "destination" : {
-        "id" : "6a125630-a11e-3988-b744-1e1eaa790b6e",
-        "type" : "FUNNEL",
-        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
-        "name" : "Funnel",
-        "comments" : "",
-        "instanceIdentifier" : "31ba02c0-0194-1000-94c4-f67bf6357c79"
-      },
-      "labelIndex" : 0,
-      "zIndex" : 0,
-      "selectedRelationships" : [ "success" ],
-      "backPressureObjectThreshold" : 1000000,
-      "backPressureDataSizeThreshold" : "1 GB",
-      "flowFileExpiration" : "600 sec",
-      "prioritizers" : [ ],
-      "bends" : [ ],
+      "bends" : [ {
+        "x" : 863.0,
+        "y" : -123.0
+      } ],
       "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
       "partitioningAttribute" : "",
       "loadBalanceCompression" : "DO_NOT_COMPRESS",
@@ -2284,35 +2365,68 @@
       "componentType" : "CONNECTION",
       "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
     }, {
-      "identifier" : "1d0a2e92-a556-3512-9f04-c3801b7963d0",
-      "instanceIdentifier" : "320c8745-0194-1000-930f-5c352cab167d",
+      "identifier" : "7676fc1e-0194-1000-1517-f9ffda7adb32",
+      "instanceIdentifier" : "3be07363-3eac-30a5-ad5f-85e6c09d3c67",
       "name" : "",
       "source" : {
-        "id" : "cbbea789-5974-3edd-b482-d6e41b85d3d7",
+        "id" : "7676fc1b-0194-1000-9c92-9e2fd964657c",
         "type" : "PROCESSOR",
         "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
-        "name" : "SplitText",
+        "name" : "FetchFile",
         "comments" : "",
-        "instanceIdentifier" : "320bd30e-0194-1000-b217-d44893d2b9d9"
+        "instanceIdentifier" : "9a3a39e9-b460-3232-8960-257322a7a9c6"
       },
       "destination" : {
-        "id" : "f68c72d9-718e-3f4c-b930-5e59a9e91e67",
-        "type" : "PROCESSOR",
+        "id" : "7676fc1d-0194-1000-1a79-0b5defa9f430",
+        "type" : "FUNNEL",
         "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
-        "name" : "ExtractText",
+        "name" : "Funnel",
         "comments" : "",
-        "instanceIdentifier" : "320da993-0194-1000-ea6f-851f1f126190"
+        "instanceIdentifier" : "2f4d279a-cd6d-3c26-a732-fce61ae80b63"
       },
       "labelIndex" : 0,
       "zIndex" : 0,
-      "selectedRelationships" : [ "splits" ],
-      "backPressureObjectThreshold" : 1,
+      "selectedRelationships" : [ "success" ],
+      "backPressureObjectThreshold" : 1000000,
+      "backPressureDataSizeThreshold" : "1 GB",
+      "flowFileExpiration" : "600 sec",
+      "prioritizers" : [ ],
+      "bends" : [ ],
+      "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+      "partitioningAttribute" : "",
+      "loadBalanceCompression" : "DO_NOT_COMPRESS",
+      "componentType" : "CONNECTION",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
+      "identifier" : "183f1a5e-b6ac-3024-8a00-dd740396714d",
+      "instanceIdentifier" : "76773cb1-0194-1000-a349-26972f7e5f00",
+      "name" : "",
+      "source" : {
+        "id" : "7676217f-0194-1000-5f57-729938087696",
+        "type" : "PROCESSOR",
+        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
+        "name" : "EvaluateJsonPath",
+        "comments" : "",
+        "instanceIdentifier" : "5313d0da-942a-3231-8d05-6d8e452e6b0a"
+      },
+      "destination" : {
+        "id" : "7676fc1b-0194-1000-9c92-9e2fd964657c",
+        "type" : "PROCESSOR",
+        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
+        "name" : "FetchFile",
+        "comments" : "",
+        "instanceIdentifier" : "9a3a39e9-b460-3232-8960-257322a7a9c6"
+      },
+      "labelIndex" : 0,
+      "zIndex" : 0,
+      "selectedRelationships" : [ "matched" ],
+      "backPressureObjectThreshold" : 10000,
       "backPressureDataSizeThreshold" : "1 GB",
       "flowFileExpiration" : "0 sec",
       "prioritizers" : [ ],
       "bends" : [ {
-        "x" : -608.0,
-        "y" : 16.0
+        "x" : 1644.0,
+        "y" : 551.0
       } ],
       "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
       "partitioningAttribute" : "",
@@ -2494,6 +2608,75 @@
       "componentType" : "CONNECTION",
       "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
     }, {
+      "identifier" : "bec3e59b-063e-399b-adf6-95fcc2d9d224",
+      "instanceIdentifier" : "7696a47a-0194-1000-7eb1-1a553fbf4a6b",
+      "name" : "",
+      "source" : {
+        "id" : "ccf8624f-45a9-3bbe-9b89-86f7de0b74fe",
+        "type" : "PROCESSOR",
+        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
+        "name" : "UpdateAttribute",
+        "comments" : "",
+        "instanceIdentifier" : "76968055-0194-1000-60d5-cb02317ff6d4"
+      },
+      "destination" : {
+        "id" : "7676217f-0194-1000-5f57-729938087696",
+        "type" : "PROCESSOR",
+        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
+        "name" : "EvaluateJsonPath",
+        "comments" : "",
+        "instanceIdentifier" : "5313d0da-942a-3231-8d05-6d8e452e6b0a"
+      },
+      "labelIndex" : 0,
+      "zIndex" : 0,
+      "selectedRelationships" : [ "success" ],
+      "backPressureObjectThreshold" : 10000,
+      "backPressureDataSizeThreshold" : "1 GB",
+      "flowFileExpiration" : "0 sec",
+      "prioritizers" : [ ],
+      "bends" : [ {
+        "x" : 1656.0,
+        "y" : 416.0
+      } ],
+      "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+      "partitioningAttribute" : "",
+      "loadBalanceCompression" : "DO_NOT_COMPRESS",
+      "componentType" : "CONNECTION",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
+      "identifier" : "154825eb-fd4f-3628-98d6-9ce19b00d147",
+      "instanceIdentifier" : "761a2037-0194-1000-1202-9a5229b52cab",
+      "name" : "",
+      "source" : {
+        "id" : "7619d5c1-0194-1000-2760-e61c5579f5f4",
+        "type" : "PROCESSOR",
+        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
+        "name" : "FetchFile",
+        "comments" : "",
+        "instanceIdentifier" : "5c359ab1-9803-371a-cae7-600b10102550"
+      },
+      "destination" : {
+        "id" : "80f50377-3778-3db6-a058-d57cfc06653f",
+        "type" : "FUNNEL",
+        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
+        "name" : "Funnel",
+        "comments" : "",
+        "instanceIdentifier" : "3283638a-0194-1000-5066-2a0e4cc8fce0"
+      },
+      "labelIndex" : 0,
+      "zIndex" : 0,
+      "selectedRelationships" : [ "success" ],
+      "backPressureObjectThreshold" : 200000,
+      "backPressureDataSizeThreshold" : "1 GB",
+      "flowFileExpiration" : "600 sec",
+      "prioritizers" : [ ],
+      "bends" : [ ],
+      "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+      "partitioningAttribute" : "",
+      "loadBalanceCompression" : "DO_NOT_COMPRESS",
+      "componentType" : "CONNECTION",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
       "identifier" : "2757fb96-20fd-3fb5-b863-5ca18ebb6dc6",
       "instanceIdentifier" : "329ded8d-0194-1000-d6fb-b66e5824edc9",
       "name" : "",
@@ -2578,12 +2761,12 @@
         "instanceIdentifier" : "33353061-0194-1000-c5d8-7d89fcdee3c6"
       },
       "destination" : {
-        "id" : "082e15c7-8dcc-3640-bb14-fb37eb5fe041",
-        "type" : "FUNNEL",
+        "id" : "7674e76e-0194-1000-11ea-b684c2297cca",
+        "type" : "PROCESSOR",
         "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
-        "name" : "Funnel",
+        "name" : "SplitText",
         "comments" : "",
-        "instanceIdentifier" : "3336c7a5-0194-1000-8372-3872ccfef612"
+        "instanceIdentifier" : "d4bb3363-14e3-3c8d-141a-2c4233975ecd"
       },
       "labelIndex" : 0,
       "zIndex" : 0,
@@ -2592,7 +2775,82 @@
       "backPressureDataSizeThreshold" : "1 GB",
       "flowFileExpiration" : "0 sec",
       "prioritizers" : [ ],
-      "bends" : [ ],
+      "bends" : [ {
+        "x" : 1640.0,
+        "y" : 8.0
+      } ],
+      "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+      "partitioningAttribute" : "",
+      "loadBalanceCompression" : "DO_NOT_COMPRESS",
+      "componentType" : "CONNECTION",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
+      "identifier" : "4e1782e9-0a32-31ab-826a-6615dc01ab4c",
+      "instanceIdentifier" : "67643860-0194-1000-597e-10c8ef76a775",
+      "name" : "",
+      "source" : {
+        "id" : "24eb5ac5-f254-3a23-bbd9-9fa86f86be82",
+        "type" : "PROCESSOR",
+        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
+        "name" : "ExecuteGroovyScript",
+        "comments" : "",
+        "instanceIdentifier" : "6763c65c-0194-1000-7169-27dcb4e63538"
+      },
+      "destination" : {
+        "id" : "7619d5c1-0194-1000-2760-e61c5579f5f4",
+        "type" : "PROCESSOR",
+        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
+        "name" : "FetchFile",
+        "comments" : "",
+        "instanceIdentifier" : "5c359ab1-9803-371a-cae7-600b10102550"
+      },
+      "labelIndex" : 0,
+      "zIndex" : 0,
+      "selectedRelationships" : [ "success" ],
+      "backPressureObjectThreshold" : 1,
+      "backPressureDataSizeThreshold" : "1 GB",
+      "flowFileExpiration" : "0 sec",
+      "prioritizers" : [ ],
+      "bends" : [ {
+        "x" : 863.0,
+        "y" : 13.0
+      } ],
+      "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+      "partitioningAttribute" : "",
+      "loadBalanceCompression" : "DO_NOT_COMPRESS",
+      "componentType" : "CONNECTION",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
+      "identifier" : "174bd065-839d-3d17-b4e8-eb177226254a",
+      "instanceIdentifier" : "767640ad-0194-1000-15ce-e45c217978c6",
+      "name" : "",
+      "source" : {
+        "id" : "7674e76f-0194-1000-17a1-16fc5df78e57",
+        "type" : "PROCESSOR",
+        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
+        "name" : "SplitText",
+        "comments" : "",
+        "instanceIdentifier" : "bf4aba02-f036-3af5-0f80-28061fbc245a"
+      },
+      "destination" : {
+        "id" : "ccf8624f-45a9-3bbe-9b89-86f7de0b74fe",
+        "type" : "PROCESSOR",
+        "groupId" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f",
+        "name" : "UpdateAttribute",
+        "comments" : "",
+        "instanceIdentifier" : "76968055-0194-1000-60d5-cb02317ff6d4"
+      },
+      "labelIndex" : 0,
+      "zIndex" : 0,
+      "selectedRelationships" : [ "splits" ],
+      "backPressureObjectThreshold" : 100,
+      "backPressureDataSizeThreshold" : "1 GB",
+      "flowFileExpiration" : "0 sec",
+      "prioritizers" : [ ],
+      "bends" : [ {
+        "x" : 1648.0,
+        "y" : 272.0
+      } ],
       "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
       "partitioningAttribute" : "",
       "loadBalanceCompression" : "DO_NOT_COMPRESS",
@@ -2701,13 +2959,93 @@
       "componentType" : "CONNECTION",
       "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
     } ],
-    "labels" : [ ],
-    "funnels" : [ {
-      "identifier" : "14997f45-4884-3a45-aae5-bc1b3d560a46",
-      "instanceIdentifier" : "320e4ad9-0194-1000-6c3a-6ecd85d10701",
+    "labels" : [ {
+      "identifier" : "7688e604-0194-1000-f332-ab0fbb9607de",
+      "instanceIdentifier" : "7fc8d954-8f8e-350a-b7f9-da8dacab1486",
       "position" : {
-        "x" : -440.0,
-        "y" : 192.0
+        "x" : 416.0,
+        "y" : -304.0
+      },
+      "label" : "Чтение файлов скриптом в два захода",
+      "zIndex" : 0,
+      "width" : 248.0,
+      "height" : 32.0,
+      "style" : {
+        "font-size" : "12px"
+      },
+      "componentType" : "LABEL",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
+      "identifier" : "76896420-0194-1000-2807-ab66a74d7718",
+      "instanceIdentifier" : "2728892f-a772-3e10-f2ae-9d5114779ea1",
+      "position" : {
+        "x" : 1176.0,
+        "y" : -304.0
+      },
+      "label" : "Чтение списка файлов средствами OS",
+      "zIndex" : 0,
+      "width" : 272.0,
+      "height" : 24.0,
+      "style" : {
+        "font-size" : "12px"
+      },
+      "componentType" : "LABEL",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
+      "identifier" : "fa6c6d51-4b9b-3bd2-a6f7-0f5f2aa47306",
+      "instanceIdentifier" : "7687647f-0194-1000-e88f-58b1cdf538c4",
+      "position" : {
+        "x" : -1664.0,
+        "y" : -304.0
+      },
+      "label" : "Генератор файлов",
+      "zIndex" : 0,
+      "width" : 152.0,
+      "height" : 32.0,
+      "style" : {
+        "font-size" : "12px"
+      },
+      "componentType" : "LABEL",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
+      "identifier" : "76888842-0194-1000-24fe-ccc2edacfd12",
+      "instanceIdentifier" : "099aa7fc-fc47-3725-8b47-077d7fd0403e",
+      "position" : {
+        "x" : -304.0,
+        "y" : -296.0
+      },
+      "label" : "Чтение файлов списком",
+      "zIndex" : 0,
+      "width" : 200.0,
+      "height" : 24.0,
+      "style" : {
+        "font-size" : "12px"
+      },
+      "componentType" : "LABEL",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    }, {
+      "identifier" : "7687ddce-0194-1000-56a5-16b518beea0c",
+      "instanceIdentifier" : "65f08142-aa72-3bf7-120b-22b355a1a04d",
+      "position" : {
+        "x" : -1064.0,
+        "y" : -304.0
+      },
+      "label" : "Чтение файлов",
+      "zIndex" : 0,
+      "width" : 152.0,
+      "height" : 32.0,
+      "style" : {
+        "font-size" : "12px"
+      },
+      "componentType" : "LABEL",
+      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
+    } ],
+    "funnels" : [ {
+      "identifier" : "7676fc1c-0194-1000-833e-9977c5c29f25",
+      "instanceIdentifier" : "f5796764-82db-36c0-592d-1c771c2ef660",
+      "position" : {
+        "x" : 1864.0,
+        "y" : 592.0
       },
       "componentType" : "FUNNEL",
       "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
@@ -2715,8 +3053,8 @@
       "identifier" : "32a90720-0194-1000-fa66-04f7fd6c0480",
       "instanceIdentifier" : "2a624705-ada4-3aec-7290-c7116f665184",
       "position" : {
-        "x" : 1136.0,
-        "y" : 304.0
+        "x" : -496.0,
+        "y" : -72.0
       },
       "componentType" : "FUNNEL",
       "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
@@ -2730,11 +3068,11 @@
       "componentType" : "FUNNEL",
       "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
     }, {
-      "identifier" : "80f50377-3778-3db6-a058-d57cfc06653f",
-      "instanceIdentifier" : "3283638a-0194-1000-5066-2a0e4cc8fce0",
+      "identifier" : "7676fc1d-0194-1000-1a79-0b5defa9f430",
+      "instanceIdentifier" : "2f4d279a-cd6d-3c26-a732-fce61ae80b63",
       "position" : {
-        "x" : 520.5,
-        "y" : -5.5
+        "x" : 1312.0,
+        "y" : 752.0
       },
       "componentType" : "FUNNEL",
       "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
@@ -2748,11 +3086,11 @@
       "componentType" : "FUNNEL",
       "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
     }, {
-      "identifier" : "082e15c7-8dcc-3640-bb14-fb37eb5fe041",
-      "instanceIdentifier" : "3336c7a5-0194-1000-8372-3872ccfef612",
+      "identifier" : "80f50377-3778-3db6-a058-d57cfc06653f",
+      "instanceIdentifier" : "3283638a-0194-1000-5066-2a0e4cc8fce0",
       "position" : {
-        "x" : 1337.0,
-        "y" : 208.0
+        "x" : 512.0,
+        "y" : 248.0
       },
       "componentType" : "FUNNEL",
       "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
@@ -2760,17 +3098,8 @@
       "identifier" : "32a90721-0194-1000-d2e4-c25e63fedbee",
       "instanceIdentifier" : "070d2b37-eefb-391e-4b46-4b4ac26351bd",
       "position" : {
-        "x" : 584.0,
-        "y" : 464.0
-      },
-      "componentType" : "FUNNEL",
-      "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
-    }, {
-      "identifier" : "6a125630-a11e-3988-b744-1e1eaa790b6e",
-      "instanceIdentifier" : "31ba02c0-0194-1000-94c4-f67bf6357c79",
-      "position" : {
-        "x" : -952.0,
-        "y" : 384.0
+        "x" : -984.0,
+        "y" : 88.0
       },
       "componentType" : "FUNNEL",
       "groupIdentifier" : "bb5f8c36-3a54-3f65-9f34-5a4617e38c2f"
@@ -3596,8 +3925,8 @@
     "maxConcurrentTasks" : 1,
     "statelessFlowTimeout" : "1 min",
     "componentType" : "PROCESS_GROUP",
-    "flowFileConcurrency" : "UNBOUNDED",
-    "flowFileOutboundPolicy" : "STREAM_WHEN_AVAILABLE"
+    "flowFileOutboundPolicy" : "STREAM_WHEN_AVAILABLE",
+    "flowFileConcurrency" : "UNBOUNDED"
   },
   "externalControllerServices" : { },
   "parameterContexts" : { },

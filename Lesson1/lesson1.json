@@ -2,7 +2,7 @@
   "flowContents" : {
     "identifier" : "95fda13a-c6c2-3cdf-876d-49d2d6ddfc35",
     "instanceIdentifier" : "27492e75-0194-1000-4876-14fdb42d0243",
-    "name" : "Lab1",
+    "name" : "lesson1",
     "comments" : "Удаляем пустые строки в текстовом файле",
     "position" : {
       "x" : -504.0,
