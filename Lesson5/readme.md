@@ -12,7 +12,15 @@ CREATE TABLE russian_surnames (
   surname TEXT NOT NULL
 );
 ```
-Путь к файлу в дальнейшем надо указать в сервисе DBCPConnectionPool.
+Путь к файлу БД в дальнейшем надо указать в сервисе DBCPConnectionPool.
+
+Для Postrgesql аналогичным образом надо создать таблицу
+```sql
+CREATE TABLE russian_surnames (
+  id BIGSERIAL PRIMARY KEY,
+  surname TEXT NOT NULL
+);
+```
 
 Визуализация
 Ниже представлена схема flow который производит обработку входящих записей и меняет в них фамилии на те, которые есть в справочнике:
