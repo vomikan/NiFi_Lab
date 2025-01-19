@@ -8,17 +8,22 @@
 
 ```sql
 CREATE TABLE russian_surnames (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  surname TEXT NOT NULL
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    surname TEXT NOT NULL
 );
+
+CREATE INDEX idx_russian_surnames_surname ON russian_surnames (surname);
 ```
 Путь к файлу БД в дальнейшем надо указать в сервисе DBCPConnectionPool.
 
 Для Postrgesql аналогичным образом надо создать таблицу
 ```sql
-CREATE TABLE russian_surnames (
-  id BIGSERIAL PRIMARY KEY,
-  surname TEXT NOT NULL
+create table russian_surnames
+(
+	id bigserial not null
+		constraint russian_surnames_pkey
+			primary key,
+	surname text not null
 );
 ```
 
