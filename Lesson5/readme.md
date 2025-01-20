@@ -7,12 +7,11 @@
 Файл для SQLite необходимо заранее подготовить и расположить в доступном для NiFi каталоге. Удобно использовать утилиту [DB Browser for SQLite](https://sqlitebrowser.org/)
 
 ```sql
-CREATE TABLE russian_surnames (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    surname TEXT NOT NULL
+CREATE TABLE "russian_surnames" (
+	"id"	INTEGER,
+	"surname"	TEXT NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
 );
-
-CREATE INDEX idx_russian_surnames_surname ON russian_surnames (surname);
 ```
 Путь к файлу БД в дальнейшем надо указать в сервисе DBCPConnectionPool.
 
