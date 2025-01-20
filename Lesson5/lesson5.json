@@ -17,7 +17,7 @@
       "comments" : "",
       "position" : {
         "x" : 448.0,
-        "y" : -344.0
+        "y" : -232.0
       },
       "type" : "org.apache.nifi.processors.standard.GenerateRecord",
       "bundle" : {
@@ -177,7 +177,7 @@
       "comments" : "",
       "position" : {
         "x" : 1152.0,
-        "y" : 336.0
+        "y" : 344.0
       },
       "type" : "org.apache.nifi.processors.standard.LookupRecord",
       "bundle" : {
@@ -193,7 +193,7 @@
         "result-record-path" : "/surname",
         "record-writer" : "83577715-eba1-3a40-b647-02746169ff82",
         "record-reader" : "76a15e26-07b7-3f1c-9b37-b787cfcedc84",
-        "lookup-service" : "57daac09-8acc-3b80-bd3e-28b5166edf39",
+        "lookup-service" : "f7bf8cd6-f667-3955-a8d7-1aa0a0e378f0",
         "record-update-strategy" : "use-property",
         "key" : "/rand"
       },
@@ -320,7 +320,7 @@
         "Statement Type Record Path" : null,
         "Column Name Translation Pattern" : null,
         "put-db-record-translate-field-names" : "true",
-        "put-db-record-dcbp-service" : "7a89b158-bbd8-335b-8513-1dbb82fb7919",
+        "put-db-record-dcbp-service" : "9ec3ee77-3221-3d62-92f6-8267b10d0e88",
         "put-db-record-query-timeout" : "0 seconds",
         "Column Name Translation Strategy" : "REMOVE_SPACE",
         "rollback-on-failure" : "false",
@@ -523,7 +523,7 @@
       "runDurationMillis" : 0,
       "concurrentlySchedulableTaskCount" : 1,
       "autoTerminatedRelationships" : [ "failure", "retry" ],
-      "scheduledState" : "DISABLED",
+      "scheduledState" : "ENABLED",
       "retryCount" : 10,
       "retriedRelationships" : [ ],
       "backoffMechanism" : "PENALIZE_FLOWFILE",
@@ -869,7 +869,7 @@
       "comments" : "",
       "position" : {
         "x" : -400.0,
-        "y" : -480.0
+        "y" : -344.0
       },
       "type" : "org.apache.nifi.processors.standard.GenerateFlowFile",
       "bundle" : {
@@ -1300,154 +1300,6 @@
       "concurrentlySchedulableTaskCount" : 1,
       "autoTerminatedRelationships" : [ "failure" ],
       "scheduledState" : "ENABLED",
-      "retryCount" : 10,
-      "retriedRelationships" : [ ],
-      "backoffMechanism" : "PENALIZE_FLOWFILE",
-      "maxBackoffPeriod" : "10 mins",
-      "componentType" : "PROCESSOR",
-      "groupIdentifier" : "9c460797-72cc-35df-85b0-e59308273868"
-    }, {
-      "identifier" : "b1893589-ac56-32e0-9605-7dea7695a9fe",
-      "instanceIdentifier" : "2c879e40-0194-1000-c7fe-2c8a7641efc9",
-      "name" : "ExecuteSQL",
-      "comments" : "",
-      "position" : {
-        "x" : -400.0,
-        "y" : -344.0
-      },
-      "type" : "org.apache.nifi.processors.standard.ExecuteSQL",
-      "bundle" : {
-        "group" : "org.apache.nifi",
-        "artifact" : "nifi-standard-nar",
-        "version" : "2.1.0"
-      },
-      "properties" : {
-        "esql-max-rows" : "0",
-        "dbf-default-precision" : "10",
-        "Max Wait Time" : "0 seconds",
-        "Database Connection Pooling Service" : "72546ad6-c524-3bb0-ae4d-7698eea4f1e8",
-        "sql-post-query" : "CREATE TABLE russian_surnames (\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  surname TEXT NOT NULL\n);",
-        "esql-auto-commit" : "true",
-        "dbf-user-logical-types" : "false",
-        "dbf-default-scale" : "0",
-        "sql-pre-query" : null,
-        "compression-format" : "NONE",
-        "esql-output-batch-size" : "0",
-        "esql-fetch-size" : "0",
-        "SQL select query" : "DROP TABLE IF EXISTS russian_surnames;",
-        "dbf-normalize" : "false"
-      },
-      "propertyDescriptors" : {
-        "esql-max-rows" : {
-          "name" : "esql-max-rows",
-          "displayName" : "Max Rows Per Flow File",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "dbf-default-precision" : {
-          "name" : "dbf-default-precision",
-          "displayName" : "Default Decimal Precision",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Max Wait Time" : {
-          "name" : "Max Wait Time",
-          "displayName" : "Max Wait Time",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Database Connection Pooling Service" : {
-          "name" : "Database Connection Pooling Service",
-          "displayName" : "Database Connection Pooling Service",
-          "identifiesControllerService" : true,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "sql-post-query" : {
-          "name" : "sql-post-query",
-          "displayName" : "SQL Post-Query",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "esql-auto-commit" : {
-          "name" : "esql-auto-commit",
-          "displayName" : "Set Auto Commit",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "dbf-user-logical-types" : {
-          "name" : "dbf-user-logical-types",
-          "displayName" : "Use Avro Logical Types",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "dbf-default-scale" : {
-          "name" : "dbf-default-scale",
-          "displayName" : "Default Decimal Scale",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "sql-pre-query" : {
-          "name" : "sql-pre-query",
-          "displayName" : "SQL Pre-Query",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "compression-format" : {
-          "name" : "compression-format",
-          "displayName" : "Compression Format",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "esql-output-batch-size" : {
-          "name" : "esql-output-batch-size",
-          "displayName" : "Output Batch Size",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "esql-fetch-size" : {
-          "name" : "esql-fetch-size",
-          "displayName" : "Fetch Size",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "SQL select query" : {
-          "name" : "SQL select query",
-          "displayName" : "SQL select query",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "dbf-normalize" : {
-          "name" : "dbf-normalize",
-          "displayName" : "Normalize Table/Column Names",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        }
-      },
-      "style" : { },
-      "schedulingPeriod" : "0 sec",
-      "schedulingStrategy" : "TIMER_DRIVEN",
-      "executionNode" : "ALL",
-      "penaltyDuration" : "30 sec",
-      "yieldDuration" : "1 sec",
-      "bulletinLevel" : "WARN",
-      "runDurationMillis" : 0,
-      "concurrentlySchedulableTaskCount" : 1,
-      "autoTerminatedRelationships" : [ "failure" ],
-      "scheduledState" : "DISABLED",
       "retryCount" : 10,
       "retriedRelationships" : [ ],
       "backoffMechanism" : "PENALIZE_FLOWFILE",
@@ -2259,8 +2111,8 @@
       "flowFileExpiration" : "0 sec",
       "prioritizers" : [ ],
       "bends" : [ {
-        "x" : 96.0,
-        "y" : -352.0
+        "x" : 88.0,
+        "y" : -208.0
       } ],
       "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
       "partitioningAttribute" : "",
@@ -2412,12 +2264,12 @@
         "instanceIdentifier" : "2bfca6c9-0194-1000-3388-e7ee0a4d67b0"
       },
       "destination" : {
-        "id" : "161feaec-9136-3979-8aa3-13c07e455e5e",
+        "id" : "2da18838-0194-1000-12f8-a9e336bc2de7",
         "type" : "PROCESSOR",
         "groupId" : "9c460797-72cc-35df-85b0-e59308273868",
-        "name" : "PutDatabaseRecord",
-        "comments" : "",
-        "instanceIdentifier" : "2c0bd9ee-0194-1000-8da2-b435e5be4a91"
+        "name" : "PutRecord2Redis",
+        "comments" : "Отправляем записи в Redis методом MSET",
+        "instanceIdentifier" : "6ac1c677-a8e1-39a9-d955-e50583fb51d9"
       },
       "labelIndex" : 0,
       "zIndex" : 0,
@@ -2429,42 +2281,6 @@
       "bends" : [ {
         "x" : 88.0,
         "y" : 56.0
-      } ],
-      "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-      "partitioningAttribute" : "",
-      "loadBalanceCompression" : "DO_NOT_COMPRESS",
-      "componentType" : "CONNECTION",
-      "groupIdentifier" : "9c460797-72cc-35df-85b0-e59308273868"
-    }, {
-      "identifier" : "ceb5ca3f-2462-3219-8496-e57af9867fe7",
-      "instanceIdentifier" : "2c8da2f6-0194-1000-4a55-be916d97b9e6",
-      "name" : "",
-      "source" : {
-        "id" : "b1893589-ac56-32e0-9605-7dea7695a9fe",
-        "type" : "PROCESSOR",
-        "groupId" : "9c460797-72cc-35df-85b0-e59308273868",
-        "name" : "ExecuteSQL",
-        "comments" : "",
-        "instanceIdentifier" : "2c879e40-0194-1000-c7fe-2c8a7641efc9"
-      },
-      "destination" : {
-        "id" : "5f8b7afc-4d06-357a-9201-82a36f850d65",
-        "type" : "PROCESSOR",
-        "groupId" : "9c460797-72cc-35df-85b0-e59308273868",
-        "name" : "InvokeHTTP",
-        "comments" : "",
-        "instanceIdentifier" : "2bfc1280-0194-1000-3c9e-283d19fa28c4"
-      },
-      "labelIndex" : 0,
-      "zIndex" : 0,
-      "selectedRelationships" : [ "success" ],
-      "backPressureObjectThreshold" : 10000,
-      "backPressureDataSizeThreshold" : "1 GB",
-      "flowFileExpiration" : "0 sec",
-      "prioritizers" : [ ],
-      "bends" : [ {
-        "x" : 88.0,
-        "y" : -216.0
       } ],
       "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
       "partitioningAttribute" : "",
@@ -3122,14 +2938,14 @@
         }
       },
       "controllerServiceApis" : [ {
-        "type" : "org.apache.nifi.lookup.LookupService",
+        "type" : "org.apache.nifi.lookup.StringLookupService",
         "bundle" : {
           "group" : "org.apache.nifi",
           "artifact" : "nifi-standard-services-api-nar",
           "version" : "2.1.0"
         }
       }, {
-        "type" : "org.apache.nifi.lookup.StringLookupService",
+        "type" : "org.apache.nifi.lookup.LookupService",
         "bundle" : {
           "group" : "org.apache.nifi",
           "artifact" : "nifi-standard-services-api-nar",
@@ -3309,96 +3125,6 @@
       },
       "controllerServiceApis" : [ {
         "type" : "org.apache.nifi.serialization.RecordSetWriterFactory",
-        "bundle" : {
-          "group" : "org.apache.nifi",
-          "artifact" : "nifi-standard-services-api-nar",
-          "version" : "2.1.0"
-        }
-      } ],
-      "scheduledState" : "DISABLED",
-      "bulletinLevel" : "WARN",
-      "componentType" : "CONTROLLER_SERVICE",
-      "groupIdentifier" : "9c460797-72cc-35df-85b0-e59308273868"
-    }, {
-      "identifier" : "57daac09-8acc-3b80-bd3e-28b5166edf39",
-      "instanceIdentifier" : "46c5456f-0194-1000-79d8-c162c5cde998",
-      "name" : "SimpleDatabaseLookupService_DuckDB",
-      "comments" : "",
-      "type" : "org.apache.nifi.lookup.db.SimpleDatabaseLookupService",
-      "bundle" : {
-        "group" : "org.apache.nifi",
-        "artifact" : "nifi-lookup-services-nar",
-        "version" : "2.1.0"
-      },
-      "properties" : {
-        "dbrecord-lookup-dbcp-service" : "7a89b158-bbd8-335b-8513-1dbb82fb7919",
-        "dbrecord-lookup-clear-cache-on-enabled" : "true",
-        "lookup-value-column" : "surname",
-        "dbrecord-lookup-cache-size" : "0",
-        "dbrecord-lookup-key-column" : "id",
-        "Cache Expiration" : null,
-        "dbrecord-lookup-table-name" : "russian_surnames"
-      },
-      "propertyDescriptors" : {
-        "dbrecord-lookup-dbcp-service" : {
-          "name" : "dbrecord-lookup-dbcp-service",
-          "displayName" : "Database Connection Pooling Service",
-          "identifiesControllerService" : true,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "dbrecord-lookup-clear-cache-on-enabled" : {
-          "name" : "dbrecord-lookup-clear-cache-on-enabled",
-          "displayName" : "Clear Cache on Enabled",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "lookup-value-column" : {
-          "name" : "lookup-value-column",
-          "displayName" : "Lookup Value Column",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "dbrecord-lookup-cache-size" : {
-          "name" : "dbrecord-lookup-cache-size",
-          "displayName" : "Cache Size",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "dbrecord-lookup-key-column" : {
-          "name" : "dbrecord-lookup-key-column",
-          "displayName" : "Lookup Key Column",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Cache Expiration" : {
-          "name" : "Cache Expiration",
-          "displayName" : "Cache Expiration",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "dbrecord-lookup-table-name" : {
-          "name" : "dbrecord-lookup-table-name",
-          "displayName" : "Table Name",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        }
-      },
-      "controllerServiceApis" : [ {
-        "type" : "org.apache.nifi.lookup.LookupService",
-        "bundle" : {
-          "group" : "org.apache.nifi",
-          "artifact" : "nifi-standard-services-api-nar",
-          "version" : "2.1.0"
-        }
-      }, {
-        "type" : "org.apache.nifi.lookup.StringLookupService",
         "bundle" : {
           "group" : "org.apache.nifi",
           "artifact" : "nifi-standard-services-api-nar",
@@ -3748,7 +3474,7 @@
           "dynamic" : false,
           "resourceDefinition" : {
             "cardinality" : "MULTIPLE",
-            "resourceTypes" : [ "URL", "DIRECTORY", "FILE" ]
+            "resourceTypes" : [ "URL", "FILE", "DIRECTORY" ]
           }
         },
         "dbcp-max-idle-conns" : {
@@ -3781,7 +3507,7 @@
     }, {
       "identifier" : "72546ad6-c524-3bb0-ae4d-7698eea4f1e8",
       "instanceIdentifier" : "2c0e1772-0194-1000-3ff5-fc43c0dd55e8",
-      "name" : "DBCPConnectionPool",
+      "name" : "DBCPConnectionPool_SQLite",
       "comments" : "",
       "type" : "org.apache.nifi.dbcp.DBCPConnectionPool",
       "bundle" : {
@@ -3898,7 +3624,7 @@
           "dynamic" : false,
           "resourceDefinition" : {
             "cardinality" : "MULTIPLE",
-            "resourceTypes" : [ "URL", "DIRECTORY", "FILE" ]
+            "resourceTypes" : [ "URL", "FILE", "DIRECTORY" ]
           }
         },
         "dbcp-max-idle-conns" : {
@@ -3931,7 +3657,7 @@
     }, {
       "identifier" : "aa247e4b-7fe6-3655-bf2c-e2fef46951ec",
       "instanceIdentifier" : "2c463344-0194-1000-451b-3dab222f67c5",
-      "name" : "SimpleDatabaseLookupService",
+      "name" : "SimpleDatabaseLookupService_SQLite",
       "comments" : "",
       "type" : "org.apache.nifi.lookup.db.SimpleDatabaseLookupService",
       "bundle" : {
@@ -4000,14 +3726,14 @@
         }
       },
       "controllerServiceApis" : [ {
-        "type" : "org.apache.nifi.lookup.LookupService",
+        "type" : "org.apache.nifi.lookup.StringLookupService",
         "bundle" : {
           "group" : "org.apache.nifi",
           "artifact" : "nifi-standard-services-api-nar",
           "version" : "2.1.0"
         }
       }, {
-        "type" : "org.apache.nifi.lookup.StringLookupService",
+        "type" : "org.apache.nifi.lookup.LookupService",
         "bundle" : {
           "group" : "org.apache.nifi",
           "artifact" : "nifi-standard-services-api-nar",
@@ -4824,14 +4550,14 @@
         }
       },
       "controllerServiceApis" : [ {
-        "type" : "org.apache.nifi.lookup.LookupService",
+        "type" : "org.apache.nifi.lookup.StringLookupService",
         "bundle" : {
           "group" : "org.apache.nifi",
           "artifact" : "nifi-standard-services-api-nar",
           "version" : "2.1.0"
         }
       }, {
-        "type" : "org.apache.nifi.lookup.StringLookupService",
+        "type" : "org.apache.nifi.lookup.LookupService",
         "bundle" : {
           "group" : "org.apache.nifi",
           "artifact" : "nifi-standard-services-api-nar",
@@ -4964,164 +4690,14 @@
         }
       },
       "controllerServiceApis" : [ {
-        "type" : "org.apache.nifi.lookup.LookupService",
-        "bundle" : {
-          "group" : "org.apache.nifi",
-          "artifact" : "nifi-standard-services-api-nar",
-          "version" : "2.1.0"
-        }
-      }, {
         "type" : "org.apache.nifi.lookup.StringLookupService",
         "bundle" : {
           "group" : "org.apache.nifi",
           "artifact" : "nifi-standard-services-api-nar",
           "version" : "2.1.0"
         }
-      } ],
-      "scheduledState" : "DISABLED",
-      "bulletinLevel" : "WARN",
-      "componentType" : "CONTROLLER_SERVICE",
-      "groupIdentifier" : "9c460797-72cc-35df-85b0-e59308273868"
-    }, {
-      "identifier" : "7a89b158-bbd8-335b-8513-1dbb82fb7919",
-      "instanceIdentifier" : "46b90700-0194-1000-5f23-37107424ac20",
-      "name" : "\t DBCPConnectionPool_DuckDB",
-      "comments" : "",
-      "type" : "org.apache.nifi.dbcp.DBCPConnectionPool",
-      "bundle" : {
-        "group" : "org.apache.nifi",
-        "artifact" : "nifi-dbcp-service-nar",
-        "version" : "2.1.0"
-      },
-      "properties" : {
-        "dbcp-min-idle-conns" : "0",
-        "Max Wait Time" : "500 millis",
-        "Database Driver Class Name" : "org.duckdb.DuckDBDriver",
-        "dbcp-min-evictable-idle-time" : "30 mins",
-        "Max Total Connections" : "8",
-        "dbcp-max-conn-lifetime" : "-1",
-        "Validation-query" : null,
-        "Database Connection URL" : "jdbc:duckdb:./extensions/russian_surnames.duckdb",
-        "dbcp-time-between-eviction-runs" : "-1",
-        "Database User" : null,
-        "kerberos-user-service" : null,
-        "dbcp-soft-min-evictable-idle-time" : "-1",
-        "database-driver-locations" : "./extensions/duckdb_jdbc-1.1.3.jar",
-        "dbcp-max-idle-conns" : "8"
-      },
-      "propertyDescriptors" : {
-        "dbcp-min-idle-conns" : {
-          "name" : "dbcp-min-idle-conns",
-          "displayName" : "Minimum Idle Connections",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Max Wait Time" : {
-          "name" : "Max Wait Time",
-          "displayName" : "Max Wait Time",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Database Driver Class Name" : {
-          "name" : "Database Driver Class Name",
-          "displayName" : "Database Driver Class Name",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "dbcp-min-evictable-idle-time" : {
-          "name" : "dbcp-min-evictable-idle-time",
-          "displayName" : "Minimum Evictable Idle Time",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Max Total Connections" : {
-          "name" : "Max Total Connections",
-          "displayName" : "Max Total Connections",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "dbcp-max-conn-lifetime" : {
-          "name" : "dbcp-max-conn-lifetime",
-          "displayName" : "Max Connection Lifetime",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Validation-query" : {
-          "name" : "Validation-query",
-          "displayName" : "Validation query",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Database Connection URL" : {
-          "name" : "Database Connection URL",
-          "displayName" : "Database Connection URL",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "dbcp-time-between-eviction-runs" : {
-          "name" : "dbcp-time-between-eviction-runs",
-          "displayName" : "Time Between Eviction Runs",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Database User" : {
-          "name" : "Database User",
-          "displayName" : "Database User",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "kerberos-user-service" : {
-          "name" : "kerberos-user-service",
-          "displayName" : "Kerberos User Service",
-          "identifiesControllerService" : true,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "dbcp-soft-min-evictable-idle-time" : {
-          "name" : "dbcp-soft-min-evictable-idle-time",
-          "displayName" : "Soft Minimum Evictable Idle Time",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "database-driver-locations" : {
-          "name" : "database-driver-locations",
-          "displayName" : "Database Driver Location(s)",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false,
-          "resourceDefinition" : {
-            "cardinality" : "MULTIPLE",
-            "resourceTypes" : [ "URL", "DIRECTORY", "FILE" ]
-          }
-        },
-        "dbcp-max-idle-conns" : {
-          "name" : "dbcp-max-idle-conns",
-          "displayName" : "Max Idle Connections",
-          "identifiesControllerService" : false,
-          "sensitive" : false,
-          "dynamic" : false
-        },
-        "Password" : {
-          "name" : "Password",
-          "displayName" : "Password",
-          "identifiesControllerService" : false,
-          "sensitive" : true,
-          "dynamic" : false
-        }
-      },
-      "controllerServiceApis" : [ {
-        "type" : "org.apache.nifi.dbcp.DBCPService",
+      }, {
+        "type" : "org.apache.nifi.lookup.LookupService",
         "bundle" : {
           "group" : "org.apache.nifi",
           "artifact" : "nifi-standard-services-api-nar",
@@ -5141,8 +4717,8 @@
     "maxConcurrentTasks" : 1,
     "statelessFlowTimeout" : "1 min",
     "componentType" : "PROCESS_GROUP",
-    "flowFileConcurrency" : "UNBOUNDED",
-    "flowFileOutboundPolicy" : "STREAM_WHEN_AVAILABLE"
+    "flowFileOutboundPolicy" : "STREAM_WHEN_AVAILABLE",
+    "flowFileConcurrency" : "UNBOUNDED"
   },
   "externalControllerServices" : { },
   "parameterContexts" : { },
