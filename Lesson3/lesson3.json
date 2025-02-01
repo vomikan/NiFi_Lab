@@ -5,8 +5,8 @@
     "name" : "lesson3",
     "comments" : "Меняем один атрибут записи по значению другого",
     "position" : {
-      "x" : -40.0,
-      "y" : -352.0
+      "x" : -504.0,
+      "y" : 32.0
     },
     "processGroups" : [ ],
     "remoteProcessGroups" : [ ],
@@ -242,7 +242,7 @@
           "dynamic" : false,
           "resourceDefinition" : {
             "cardinality" : "SINGLE",
-            "resourceTypes" : [ "TEXT", "FILE" ]
+            "resourceTypes" : [ "FILE", "TEXT" ]
           }
         },
         "jolt-record-record-reader" : {
@@ -315,7 +315,7 @@
           "dynamic" : false,
           "resourceDefinition" : {
             "cardinality" : "SINGLE",
-            "resourceTypes" : [ "TEXT", "FILE" ]
+            "resourceTypes" : [ "FILE", "TEXT" ]
           }
         },
         "jslt-transform-cache-size" : {
@@ -435,7 +435,7 @@
       "runDurationMillis" : 0,
       "concurrentlySchedulableTaskCount" : 1,
       "autoTerminatedRelationships" : [ ],
-      "scheduledState" : "DISABLED",
+      "scheduledState" : "ENABLED",
       "retryCount" : 10,
       "retriedRelationships" : [ ],
       "backoffMechanism" : "PENALIZE_FLOWFILE",
@@ -542,7 +542,7 @@
         "version" : "2.1.0"
       },
       "properties" : {
-        "groovyx-script-body" : "import groovy.json.JsonSlurper\nimport groovy.json.JsonOutput\nimport org.apache.nifi.processor.io.StreamCallback\n\ndef flowFile = session.get()\nif (!flowFile) return\n\nString myAttr = myAttr.value\n\nflowFile = session.write(flowFile, { inputStream, outputStream ->\n    // Читаем весь входной поток как JSON-массив\n    def jsonSlurper = new JsonSlurper()\n    def jsonArray = jsonSlurper.parse(inputStream)\n\n    // Обрабатываем каждый объект в массиве\n    def processedArray = jsonArray.collect { parsedJson ->\n        if ([\"pause\", \"halt\"].contains(parsedJson.attr1)) {\n            parsedJson.attr2 = myAttr\n        }\n        parsedJson\n    }\n\n    // Записываем обработанный массив в выходной поток\n    outputStream.withWriter(\"UTF-8\") { writer ->\n        writer.write(JsonOutput.toJson(processedArray))\n    }\n} as StreamCallback)\n\nsession.transfer(flowFile, REL_SUCCESS)",
+        "groovyx-script-body" : "import groovy.json.JsonSlurper\nimport groovy.json.JsonOutput\nimport org.apache.nifi.processor.io.StreamCallback\n\ndef flowFile = session.get()\nif (!flowFile) return\n\ndef myAttr = context.getProperty(\"myAttr\")?.evaluateAttributeExpressions(flowFile)?.value\n\nflowFile = session.write(flowFile, { inputStream, outputStream ->\n    // Читаем весь входной поток как JSON-массив\n    def jsonSlurper = new JsonSlurper()\n    def jsonArray = jsonSlurper.parse(inputStream)\n\n    // Обрабатываем каждый объект в массиве\n    def processedArray = jsonArray.collect { parsedJson ->\n        if ([\"pause\", \"halt\"].contains(parsedJson.attr1)) {\n            parsedJson.attr2 = myAttr\n        }\n        parsedJson\n    }\n\n    // Записываем обработанный массив в выходной поток\n    outputStream.withWriter(\"UTF-8\") { writer ->\n        writer.write(JsonOutput.toJson(processedArray))\n    }\n} as StreamCallback)\n\nsession.transfer(flowFile, REL_SUCCESS)",
         "groovyx-failure-strategy" : "rollback",
         "groovyx-additional-classpath" : null,
         "myAttr" : "x",
@@ -1008,20 +1008,20 @@
     } ],
     "labels" : [ ],
     "funnels" : [ {
-      "identifier" : "68dd90c5-dba5-3ffe-91db-70e7975b668f",
-      "instanceIdentifier" : "282eec3f-0194-1000-fd2e-bf7dafcc4165",
-      "position" : {
-        "x" : 696.9375,
-        "y" : -105.0
-      },
-      "componentType" : "FUNNEL",
-      "groupIdentifier" : "e26d70ae-424d-371f-b7ab-cdb18b417179"
-    }, {
       "identifier" : "910d555c-5653-321c-9eb9-0dc414b55f6c",
       "instanceIdentifier" : "2818b908-0194-1000-c2e4-11f8c499cf97",
       "position" : {
         "x" : 696.9375,
         "y" : -232.0
+      },
+      "componentType" : "FUNNEL",
+      "groupIdentifier" : "e26d70ae-424d-371f-b7ab-cdb18b417179"
+    }, {
+      "identifier" : "68dd90c5-dba5-3ffe-91db-70e7975b668f",
+      "instanceIdentifier" : "282eec3f-0194-1000-fd2e-bf7dafcc4165",
+      "position" : {
+        "x" : 696.9375,
+        "y" : -105.0
       },
       "componentType" : "FUNNEL",
       "groupIdentifier" : "e26d70ae-424d-371f-b7ab-cdb18b417179"
@@ -1405,8 +1405,8 @@
     "maxConcurrentTasks" : 1,
     "statelessFlowTimeout" : "1 min",
     "componentType" : "PROCESS_GROUP",
-    "flowFileConcurrency" : "UNBOUNDED",
-    "flowFileOutboundPolicy" : "STREAM_WHEN_AVAILABLE"
+    "flowFileOutboundPolicy" : "STREAM_WHEN_AVAILABLE",
+    "flowFileConcurrency" : "UNBOUNDED"
   },
   "externalControllerServices" : { },
   "parameterContexts" : { },
