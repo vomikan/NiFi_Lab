@@ -49,7 +49,7 @@
 10. **Lesson10**: Чтение всей таблицы из базы данных и её обработка.
 11. **Lesson11**: Преобразование XML в JSON с сохранением структуры данных.
 12. **Lesson12**: Back Pressure & retry
-13.  **Lesson13**: Преобразование Excel в CSV
+13.  **Lesson13**: Преобразование Excel в CSV (тут пример кастомного процессора на Python)
 14. **Lesson14**: DQ
 15. **Lesson15**: MockScript
 16.  **Lesson16**: InvokeScriptedProcessor
