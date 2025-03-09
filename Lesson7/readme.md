@@ -186,12 +186,11 @@ record
 
 ![NiFi Flow](pipeline.png)
 
-Выводы
-Производительность:
+## Выводы
+### Производительность:
 У данных процессоров практически одинаковая скорость обработки данных.
 
-Гибкость:
-
+### Гибкость
 ExecuteGroovyScript и ScriptedTransformRecord предоставляют больше гибкости для сложной логики фильтрации.
 Такие скрипты легко можно создать с нуля с использованием ИИ.
 К недостаткам скриптов можно отнести то, что в комманде не будет эксперта по groovy. 
@@ -203,3 +202,17 @@ ExecuteGroovyScript и ScriptedTransformRecord предоставляют бол
 Это осложняется тем, что нет хорошо обученных моделей ИИ для этого. Как правило, вы получите глюк. 
 
 Этот урок демонстрирует, как можно решать одну и ту же задачу разными способами в NiFi, и помогает понять, какой подход лучше подходит для конкретных сценариев.
+
+### Полезные ссылки
+[Jolt Transform Demo Using](https://jolt-demo.appspot.com/)
+
+[Json Jolt Tutorial](https://cool-cheng.blogspot.com/2019/12/json-jolt-tutorial.html)
+
+[JSLT tutorial](https://github.com/schibsted/jslt/blob/master/tutorial.md)
+
+[JSLT example transformations](https://github.com/schibsted/jslt/blob/master/examples/README.md)
+
+[JSLT functions](https://github.com/schibsted/jslt/blob/master/functions.md?ysclid=lzsp7ge8f0491677772)
+
+[JSLT demo playground](https://www.garshol.priv.no/jslt-demo)
+
