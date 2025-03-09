@@ -37,7 +37,7 @@
 }
 ```
 
-2. Процессоры для фильтрации
+### Процессоры для фильтрации
 Мы рассмотрим несколько подходов для фильтрации данных:
 
 a) [JSLTTransformJSON](https://nifi.apache.org/docs/nifi-docs/components/org.apache.nifi/nifi-jslt-nar/1.26.0/org.apache.nifi.processors.jslt.JSLTTransformJSON/)
@@ -194,6 +194,10 @@ record
 
 ExecuteGroovyScript и ScriptedTransformRecord предоставляют больше гибкости для сложной логики фильтрации.
 Такие скрипты легко можно создать с нуля с использованием ИИ.
+К недостаткам скриптов можно отнести то, что в комманде не будет эксперта по groovy. 
+От службы безопасности или сразу в постановке задачи может быть запрет на использование скриптов.
+Плохо написанный скрит может приводить к OOM при работе с большими файлами.
+
 Процессоры JSLTTransformJSON и JoltTransformJSON потребуют изучения сложных спецификаций [JSLT](https://github.com/schibsted/jslt/blob/master/functions.md?ysclid=lzsp7ge8f0491677772) и [JOLT](https://lucabiscotti.github.io/jolt-guide.github.io/) соответвенно.4
 Это осложняется тем, что нет хорошо обученных моделей ИИ для этого. Как правило, вы получите глюк. 
 
