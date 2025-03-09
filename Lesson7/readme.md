@@ -197,6 +197,7 @@ ExecuteGroovyScript и ScriptedTransformRecord предоставляют бол
 К недостаткам скриптов можно отнести то, что в комманде не будет эксперта по groovy. 
 От службы безопасности или сразу в постановке задачи может быть запрет на использование скриптов.
 Плохо написанный скрит может приводить к OOM при работе с большими файлами.
+Сложно делать отладку таких скриптов. Технология отладки будет показана в [уроке 15](https://github.com/vomikan/NiFi_Lab/tree/main/Lesson15).
 
 Процессоры JSLTTransformJSON и JoltTransformJSON потребуют изучения сложных спецификаций [JSLT](https://github.com/schibsted/jslt/blob/master/functions.md?ysclid=lzsp7ge8f0491677772) и [JOLT](https://lucabiscotti.github.io/jolt-guide.github.io/) соответвенно.
 Это осложняется тем, что нет хорошо обученных моделей ИИ для этого. Как правило, вы получите глюк. 
