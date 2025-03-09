@@ -41,6 +41,7 @@
 Мы рассмотрим несколько подходов для фильтрации данных:
 
 a) [JSLTTransformJSON](https://nifi.apache.org/docs/nifi-docs/components/org.apache.nifi/nifi-jslt-nar/1.26.0/org.apache.nifi.processors.jslt.JSLTTransformJSON/)
+
 Скрипт:
 ```javascript
 let filtered_addresses = 
@@ -56,7 +57,8 @@ let filtered_addresses =
 
 ```
 
-b) [JoltTransformJSON]([url](https://nifi.apache.org/docs/nifi-docs/components/org.apache.nifi/nifi-standard-nar/1.19.0/org.apache.nifi.processors.standard.JoltTransformJSON/index.html))
+b) [JoltTransformJSON](https://nifi.apache.org/docs/nifi-docs/components/org.apache.nifi/nifi-standard-nar/1.19.0/org.apache.nifi.processors.standard.JoltTransformJSON/index.html)
+
 Спецификация:
 ```json
 [
@@ -99,6 +101,7 @@ b) [JoltTransformJSON]([url](https://nifi.apache.org/docs/nifi-docs/components/o
 ```
 
 c) ExecuteGroovyScript 
+
 ```groovy
 import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
@@ -136,7 +139,7 @@ flowFile = session.write(flowFile, { outputStream ->
 session.transfer(flowFile, REL_SUCCESS)
 ```
 
-d) [ScriptedTransformRecord]([url](https://nifi.apache.org/docs/nifi-docs/components/org.apache.nifi/nifi-scripting-nar/1.24.0/org.apache.nifi.processors.script.ScriptedTransformRecord/)) 
+d) [ScriptedTransformRecord](https://nifi.apache.org/docs/nifi-docs/components/org.apache.nifi/nifi-scripting-nar/1.24.0/org.apache.nifi.processors.script.ScriptedTransformRecord/)
 ```groovy
 // Функция для фильтрации массива addresses
 def filterAddresses(addresses) {
