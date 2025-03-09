@@ -198,7 +198,7 @@ ExecuteGroovyScript и ScriptedTransformRecord предоставляют бол
 От службы безопасности или сразу в постановке задачи может быть запрет на использование скриптов.
 Плохо написанный скрит может приводить к OOM при работе с большими файлами.
 
-Процессоры JSLTTransformJSON и JoltTransformJSON потребуют изучения сложных спецификаций [JSLT](https://github.com/schibsted/jslt/blob/master/functions.md?ysclid=lzsp7ge8f0491677772) и [JOLT](https://lucabiscotti.github.io/jolt-guide.github.io/) соответвенно.4
+Процессоры JSLTTransformJSON и JoltTransformJSON потребуют изучения сложных спецификаций [JSLT](https://github.com/schibsted/jslt/blob/master/functions.md?ysclid=lzsp7ge8f0491677772) и [JOLT](https://lucabiscotti.github.io/jolt-guide.github.io/) соответвенно.
 Это осложняется тем, что нет хорошо обученных моделей ИИ для этого. Как правило, вы получите глюк. 
 
 Этот урок демонстрирует, как можно решать одну и ту же задачу разными способами в NiFi, и помогает понять, какой подход лучше подходит для конкретных сценариев.
