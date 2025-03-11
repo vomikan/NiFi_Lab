@@ -100,6 +100,7 @@
 | | $.PrintData.Detail.Item.Barcode |
 | | $.PrintData.test2 |
 
+Эти атрибуты удалять нельзя! Если не используются, то заполните одним пробелом.
  
 
 Для процессора TransformXml требуется файл [xml-to-json.xsl](https://github.com/bramstein/xsltjson/blob/master/conf/xml-to-json.xsl)
