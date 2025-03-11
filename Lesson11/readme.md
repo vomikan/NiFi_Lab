@@ -87,6 +87,19 @@
 Также скрипту можно указать что оставить как есть, чтобы лидирующие нули остались.
 Но только при неизменной схеме входящего файла!
 Также скрипт обрабатывает числа где разделитель зяпятая, наприер, `254,4` 
+
+Для скрипта задаются динамические атрибуты:
+| Property | Value
+|---------|--------|
+|comma_separator | , |
+| force_array | $.PrintData.Detail.Item |
+| skip_casting | $.PrintData.Head.Number |
+| | $.PrintData.Head.Barcode |
+| | $.PrintData.Head.Pack |
+| | $.PrintData.Detail.Item.SN1 |
+| | $.PrintData.Detail.Item.Barcode |
+| | $.PrintData.test2 |
+
  
 
 Для процессора TransformXml требуется файл [xml-to-json.xsl](https://github.com/bramstein/xsltjson/blob/master/conf/xml-to-json.xsl)
