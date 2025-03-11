@@ -111,7 +111,7 @@
 </list>
 ```
 
-ConvertRecord требует лишь настройки ридера и райтера, но не лишон недостатков.
+ConvertRecord требует лишь настройки ридера и райтера, но не лишен недостатков.
 Нарпимер строка `<cadastral_engineer_registry_number>39374 </cadastral_engineer_registry_number>` ему не по зубам.
 
 ## Визуализация
