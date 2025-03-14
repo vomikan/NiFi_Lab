@@ -45,7 +45,9 @@
 
 Задача решена двумя способами. Скриптом и JSLT трансформацией. Можно сделать это и иначе, но другие методы
 (например, ScriptedTransformRecord) потребуют больших временных затрат на конфигурацию. 
-Можно заставить работать функцию [unescapeJson](https://nifi.apache.org/docs/nifi-docs/html/record-path-guide.html#unescapejson) для UpdateRecord  процессора. Для этого надо задать AVRO схему для данных.
+Я пытался заставить работать функцию [unescapeJson](https://nifi.apache.org/docs/nifi-docs/html/record-path-guide.html#unescapejson) для UpdateRecord  процессора, но тщетно.
+Для `/contactInfo[*]/value = unescapeJson(/contactInfo[*]/valueJSON, 'true')` получится значение `"value" : "MapRecord[{value=+799990799099, type=Телефон, countryCode=7}]"`.
+Поэтому скрипты.
 
 ### JSLT трансформация
 JSLT
