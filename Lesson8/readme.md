@@ -45,6 +45,50 @@
 
 Задача решена двумя способами. Скриптом и JSLT трансформацией. Можно сделать это и иначе, но другие методы
 (например, ScriptedTransformRecord) потребуют больших временных затрат на конфигурацию. 
+Можно заставить работать функцию [unescapeJson](https://nifi.apache.org/docs/nifi-docs/html/record-path-guide.html#unescapejson) для UpdateRecord  процессора. Для этого надо задать AVRO схему для данных.
+
+### JSLT трансформация
+JSLT
+```
+{
+  "type": .type,
+  "deletionMark": .deletionMark,
+  "contactInfo": [ for (.contactInfo)
+                       from-json(.valueJSON)
+                 ]
+}
+```
+
+### Groovy скрипт
+```groovy
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+def flowFile = session.get()
+if (!flowFile) return
+
+try {
+  flowFile = session.write(flowFile, { rawIn, rawOut ->
+    def parsedJson = new JsonSlurper().parse(rawIn, 'UTF-8')
+
+    parsedJson.contactInfo = parsedJson.contactInfo.collect { item ->
+    if (item.valueJSON) {
+        item = new JsonSlurper().parseText(item.valueJSON)
+        item
+      }
+    }
+
+    def outputJson = JsonOutput.toJson(parsedJson)
+    rawOut.withWriter('UTF-8') { it.write(outputJson) }
+  } as StreamCallback)
+
+  session.transfer(flowFile, REL_SUCCESS)
+} catch (ex) {
+  flowFile = session.putAttribute(flowFile, "script.error_message", ex.getMessage())
+  flowFile = session.putAttribute(flowFile, "script.error", ex.toString())
+  session.transfer(flowFile, REL_FAILURE)
+}
+```
 
 Следуюет отметить, что в данном случает результирующий JSON получается большим по объёму. 
 Произошло экранирование Unicode. Вместо Справочник получили
