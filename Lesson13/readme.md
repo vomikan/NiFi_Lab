@@ -15,6 +15,21 @@
 ## Компоненты конвейера
 
 ### 1. Кастомный процессор NiFi (на Python)
+подготовка конфигурации в файле nifi.properties
+```
+#####################
+# Python Extensions #
+#####################
+# Uncomment in order to enable Python Extensions.
+nifi.python.command=C:\\Python\\Python311\\python.exe
+nifi.python.framework.source.directory=./python/framework
+nifi.python.extensions.source.directory.default=./python/extensions
+nifi.python.working.directory=./work/python
+nifi.python.max.processes=100
+nifi.python.max.processes.per.extension.type=10
+```
+
+
 **Расположение**: `./python/extensions/ExcelToCSVProcessor`
 
 #### Установка
