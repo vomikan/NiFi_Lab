@@ -1,5 +1,11 @@
 # Урок №9: Запись JSON данных в PostgreSQL
 
+## Визуализация
+
+Ниже представлена схема flow:
+
+![NiFi Flow](pipeline.png)
+
 ## Структура целевой таблицы
 ```
 CREATE TABLE postgres.public.test (
