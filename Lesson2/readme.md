@@ -162,20 +162,20 @@ e) ExecuteStreamCommand c grep
 
 ![NiFi Flow](pipeline.png)
 
-Выводы
-Производительность:
+## Выводы
+### Производительность:
 
 На небольших файлах процессоры ExecuteGroovyScript, ScriptedFilterRecord, RouteText и ConvertRecord работают быстрее, чем ExecuteStreamCommand с использованием grep.
 
 На больших файлах (ближе к 1 Гб) ExecuteStreamCommand может показать лучшую производительность благодаря оптимизации команды grep.
 
-Гибкость:
+### Гибкость:
 
 ExecuteGroovyScript и ScriptedFilterRecord предоставляют больше гибкости для сложной логики фильтрации.
 
 RouteText и ConvertRecord проще в настройке для простых задач.
 
-Рекомендации:
+### Рекомендации:
 
 Для небольших файлов используйте ExecuteGroovyScript или RouteText.
 
