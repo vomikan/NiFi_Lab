@@ -33,24 +33,101 @@ async def validate_file(file: UploadFile = File(...)):
 ### 2. Модуль валидации (`validation_logic.py`)
 ```python
 import pandas as pd
-from uuid import uuid4
+from uuid import uuid4  # Для генерации уникальных имён
 import great_expectations as gx
 
+# Инициализация GX Core
 context = gx.get_context()
 
-# Инициализация Datasource
-data_source = context.data_sources.add_pandas("pandas")
-data_asset = data_source.add_dataframe_asset(name="json_data_asset")
+# Создаем Datasource и ассет один раз при запуске сервера
+def initialize_datasource_and_asset():
+    datasource_names = [ds["name"] for ds in context.list_datasources()]
+    if "pandas" not in datasource_names:
+        data_source = context.data_sources.add_pandas("pandas")
+    else:
+        data_source = context.data_sources.get("pandas")
 
-# Определение правил валидации
-expectations = [
-    gx.expectations.ExpectColumnValuesToNotBeNull(column="id"),
-    gx.expectations.ExpectColumnValuesToBeUnique(column="id"),
-    gx.expectations.ExpectColumnValuesToMatchRegex(
-        column="phone_no",
-        regex=r"^\+\d{1,2} \d{3}-\d{3}-\d{4}$"
-    )
-]
+    try:
+        data_asset = data_source.get_asset("json_data_asset")
+    except LookupError:
+        data_asset = data_source.add_dataframe_asset(name="json_data_asset")
+
+    return data_asset
+
+data_asset = initialize_datasource_and_asset()
+
+# Определяем Expectations один раз
+expectation_id_unique = gx.expectations.ExpectColumnValuesToBeUnique(column="id")
+expectation_id_not_null = gx.expectations.ExpectColumnValuesToNotBeNull(column="id")
+
+expectation_surname = gx.expectations.ExpectColumnValuesToNotBeNull(column="surname")
+expectation_birthdate_not_null = gx.expectations.ExpectColumnValuesToNotBeNull(column="birthdate")
+expectation_birthdate_format = gx.expectations.ExpectColumnValuesToMatchRegex(
+    column="birthdate",
+    regex=r"^\d{4}-\d{2}-\d{2}$"
+)
+expectation_phone_no_not_null = gx.expectations.ExpectColumnValuesToNotBeNull(column="phone_no")
+expectation_phone_no_format = gx.expectations.ExpectColumnValuesToMatchRegex(
+    column="phone_no",
+    regex=r"^\+\d{1,2} \d{3}-\d{3}-\d{4}$"
+)
+
+def validate_data(data):
+    """
+    Валидирует данные с использованием Great Expectations.
+    
+    Args:
+        data (list): Список словарей с данными для валидации.
+    
+    Returns:
+        list: Входные данные с добавленным полем is_valid для каждой записи.
+    """
+    try:
+        # Преобразуем данные в DataFrame
+        df = pd.DataFrame(data)
+
+        # Генерируем уникальное имя для Batch Definition
+        batch_definition_name = f"batch_definition_{uuid4()}"
+
+        # Создаем определение пакета (Batch Definition)
+        batch_definition = data_asset.add_batch_definition_whole_dataframe(batch_definition_name)
+
+        # Получаем пакет (Batch) с данными
+        batch = batch_definition.get_batch(batch_parameters={"dataframe": df})
+
+        # Выполняем валидацию
+        validation_result_id_not_empty = batch.validate(expectation_id_not_null)
+        validation_result_id_unique = batch.validate(expectation_id_unique)
+        validation_result_surname = batch.validate(expectation_surname)
+        validation_result_birthdate_not_null = batch.validate(expectation_birthdate_not_null)
+        validation_result_birthdate_format = batch.validate(expectation_birthdate_format)
+        validation_result_phone_not_empty = batch.validate(expectation_phone_no_not_null)
+        validation_result_phone_no = batch.validate(expectation_phone_no_format)
+
+        # Удаляем временный Batch Definition после использования
+        data_asset.delete_batch_definition(batch_definition_name)
+
+        # Получаем индексы невалидных записей
+        invalid_indices = set()
+        invalid_indices.update(validation_result_id_not_empty.result.get("partial_unexpected_index_list", []))
+        invalid_indices.update(validation_result_id_unique.result.get("partial_unexpected_index_list", []))
+        invalid_indices.update(validation_result_surname.result.get("partial_unexpected_index_list", []))
+        invalid_indices.update(validation_result_surname.result.get("partial_unexpected_index_list", []))
+        invalid_indices.update(validation_result_surname.result.get("partial_unexpected_index_list", []))
+        invalid_indices.update(validation_result_birthdate_not_null.result.get("partial_unexpected_index_list", []))
+        invalid_indices.update(validation_result_birthdate_format.result.get("partial_unexpected_index_list", []))
+        invalid_indices.update(validation_result_phone_not_empty.result.get("partial_unexpected_index_list", []))
+        invalid_indices.update(validation_result_phone_no.result.get("partial_unexpected_index_list", []))
+
+        # Добавляем поле is_valid к каждой записи
+        for i, record in enumerate(data):
+            record["is_valid"] = i not in invalid_indices
+
+        return data
+
+    except Exception as e:
+        raise ValueError(f"Error during validation: {str(e)}")
+
 ```
 
 ## 🛠 Практическая часть
