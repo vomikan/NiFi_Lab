@@ -6,14 +6,13 @@
 
 ## Установка
 
-1. **Скачайте Java SE Development Kit (JDK)**:
+1. **Скачайте Apache NiFi**:
+   - Версия: [NiFi 2.6.0](https://nifi.apache.org/download.html).
+   - Распакуйте архив в папку: `C:\nifi-2.6.0`.
+
+2. **Скачайте Java SE Development Kit (JDK)**:
    - Версия: [JDK 21.0.4 (Windows x64 Compressed Archive)](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html).
-   - Распакуйте архив в папку: `C:\nifi-2.1.0\jdk-21.0.4`.
-
-2. **Скачайте Apache NiFi**:
-   - Версия: [NiFi 2.1.0](https://nifi.apache.org/download.html).
-   - Распакуйте архив в папку: `C:\nifi-2.1.0`.
-
+   - Распакуйте архив в папку: `C:\nifi-2.6.0\jdk-21.0.4`.
 ---
 
 ## Конфигурация
@@ -26,7 +25,7 @@
    rem Set Java version
    rem set JAVA_HOME="C:\Program Files\Java\jdk"
    rem The java implementation to use
-   set JAVA_HOME=C:\nifi-2.1.0\jdk-21.0.4
+   set JAVA_HOME=C:\nifi-2.6.0\jdk-21.0.4
 
 ### Настройка кодировки
 Откройте файл conf\bootstrap.conf.
@@ -52,8 +51,8 @@ set LC_ALL="en_US.UTF-8"
 
 Выполните следующие команды:
 ```
-cd C:\nifi-2.1.0
-set JAVA_HOME=C:\nifi-2.1.0\jdk-21.0.4
+cd C:\nifi-2.6.0
+set JAVA_HOME=C:\nifi-2.6.0\jdk-21.0.4
 set PATH=%JAVA_HOME%\bin;%PATH%
 java -cp .\lib\bootstrap\* -Dnifi.properties.file.path=.\conf\nifi.properties org.apache.nifi.authentication.single.user.command.SetSingleUserCredentials admin qwerty123456
 ```
@@ -66,13 +65,14 @@ qwerty123456 — новый пароль.
 ### Запуск NiFi
 Создайте ярлык для запуска NiFi:
 
-Цель ярлыка: C:\nifi-2.1.0\bin\nifi.cmd start.
+Объект: C:\nifi-2.6.0\bin\nifi.cmd start.
+Рабочая папка: C:\nifi-2.6.0\bin
 
 Запустите NiFi через ярлык.
 
 Откройте веб-интерфейс NiFi в браузере:
 
-https://localhost:8443/nifi.
+`https://localhost:8443/nifi`
 
 ### Дополнительные настройки
 Настройка процессоров: Убедитесь, что все процессоры, работающие с текстом (например, QueryRecord), используют кодировку UTF-8.
