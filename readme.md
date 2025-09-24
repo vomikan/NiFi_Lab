@@ -63,7 +63,7 @@
 15. **Lesson15**: MockScript
 16.  **Lesson16**: InvokeScriptedProcessor
 
-###⚡Intermediate
+### ⚡Intermediate
 1. **Weather**: Парсинг данных с прогнозом погоды с дальнейшей отправкой в телеграм бота.
 
 
