@@ -30,12 +30,11 @@ nifi.python.max.processes.per.extension.type=10
 ```
 
 
-**Расположение**: `./python/extensions/ExcelToCSVProcessor`
-
 #### Установка
 1. Поместите скрипт процессора в папку `./python/extensions`
 2. Перезапустите NiFi
-3. Процессор будет доступен по пути: `./work/python/extensions/ExcelToCSVProcessor/0.0.1-SNAPSHOT`
+3. Добавьте процессор на канвас (без этого не будет не выполним пункт 4)
+4. Артефакты процессора будет доступен по пути: `./work/python/extensions/ExcelToCSVProcessor/0.0.1-SNAPSHOT`
 
 #### Настройка окружения
 ```bash
